@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrie Yu — AI PM Tool · V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Epilogue:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#0F172A;--dark2:#1E293B;--dark3:#334155;
+  --warm:#FFFFFF;--warm2:#F8FAFC;--white:#FFFFFF;
+  --accent:#1D4ED8;--accent-light:#3B82F6;--accent-dim:rgba(29,78,216,0.07);
+  --green:#047857;--green-dim:rgba(4,120,87,0.07);
+  --red:#B91C1C;--red-dim:rgba(185,28,28,0.06);
+  --amber:#B45309;--amber-dim:rgba(180,83,9,0.07);
+  --jp:#64748B;--text-dark:#0F172A;--text-mid:#64748B;
+  --text-light:#F1F5F9;--border-dark:rgba(255,255,255,0.07);
+  --border-light:rgba(15,23,42,0.09);
+  --font-head:'Syne',sans-serif;--font-body:'Epilogue',sans-serif;
+  --font-jp:'Noto Sans JP',sans-serif;--nav-h:58px;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-family:var(--font-body)}
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+
+/* ─── SLIDES ─────────────────────────────────────────── */
+.slide{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:72px 96px calc(72px + var(--nav-h) + 12px);
+  opacity:0;transform:translateX(80px);
+  transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;will-change:opacity,transform;
+}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:all}
+.slide.exit-left{opacity:0;transform:translateX(-80px)}
+.dark{background:var(--dark);color:var(--text-light)}
+.light{background:var(--warm);color:var(--text-dark)}
+
+/* ─── JP TEXT ─────────────────────────────────────────── */
+.jp{font-family:var(--font-jp);font-weight:300;color:var(--jp);font-size:.92em;letter-spacing:.06em;line-height:1.65;opacity:.85}
+.jp-sub{font-family:var(--font-jp);font-weight:300;color:var(--jp);font-size:.82em;display:block;margin-top:4px;letter-spacing:.05em;line-height:1.65;opacity:.75}
+
+/* ─── SECTION ELEMENTS ───────────────────────────────── */
+.sec-num{font-family:var(--font-head);font-size:clamp(92px,10vw,156px);font-weight:800;line-height:1;color:var(--accent);opacity:.13;position:absolute;top:32px;left:52px;user-select:none;pointer-events:none}
+.sec-label{display:flex;flex-direction:column;align-items:flex-start;gap:10px;position:relative;z-index:1}
+.sec-label h1{font-family:var(--font-head);font-size:clamp(54px,7.5vw,104px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.sec-label .jp{font-size:1.1em}
+.sec-divider{width:60px;height:3px;background:var(--accent);margin:16px 0}
+
+/* ─── CONTENT HELPERS ────────────────────────────────── */
+.slide-title{font-family:var(--font-head);font-size:clamp(26px,3vw,40px);font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.slide-subtitle{font-size:1.02em;color:var(--text-mid);font-weight:300}
+.header-block{text-align:center;margin-bottom:32px}
+.rule{width:100%;height:1px;background:var(--border-light);margin:8px 0}
+
+/* ─── CARDS ──────────────────────────────────────────── */
+.cards{display:grid;gap:18px;width:100%}
+.cards-2{grid-template-columns:1fr 1fr}
+.cards-3{grid-template-columns:1fr 1fr 1fr}
+.card{
+  background:var(--white);border-radius:14px;padding:24px 22px;
+  border:1px solid var(--border-light);
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+  display:flex;flex-direction:column;gap:8px;
+}
+.card h3{font-family:var(--font-head);font-size:21px;font-weight:700;line-height:1.3}
+.card p{font-size:19px;color:var(--text-mid);line-height:1.5;font-weight:300}
+.card.accent{border-left:3px solid var(--accent)}
+.card.green{border-left:3px solid var(--green)}
+.card.red{border-left:3px solid var(--red)}
+.card.amber{border-left:3px solid var(--amber)}
+.card-icon{font-size:38px;margin-bottom:4px}
+
+/* ─── TAG ─────────────────────────────────────────────── */
+.tag{display:inline-block;padding:4px 12px;border-radius:99px;font-size:17px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.tag-accent{background:var(--accent-dim);color:var(--accent)}
+.tag-green{background:var(--green-dim);color:var(--green)}
+.tag-red{background:var(--red-dim);color:var(--red)}
+.tag-amber{background:var(--amber-dim);color:var(--amber)}
+
+/* ─── NAV BAR ────────────────────────────────────────── */
+#nav{
+  position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;background:rgba(15,23,42,.95);
+  backdrop-filter:blur(12px);border-top:1px solid var(--border-dark);
+}
+#nav .sections{display:flex;gap:6px}
+.sec-dot{width:28px;height:4px;border-radius:2px;background:rgba(255,255,255,.15);cursor:pointer;transition:background .3s}
+.sec-dot.active-sec{background:var(--accent)}
+#slide-counter{font-size:18px;color:rgba(255,255,255,.35);font-weight:400;letter-spacing:.05em;min-width:60px;text-align:center}
+.nav-btn{
+  background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);
+  width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:22px;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.nav-btn:hover{border-color:var(--accent);color:var(--accent)}
+.nav-controls{display:flex;gap:8px;align-items:center}
+
+/* ─── KEY HINT ───────────────────────────────────────── */
+.key-hint{
+  position:fixed;bottom:calc(var(--nav-h) + 14px);left:50%;transform:translateX(-50%);
+  font-size:17px;color:rgba(255,255,255,.2);letter-spacing:.06em;
+  pointer-events:none;transition:opacity .4s;
+}
+
+/* ─── COVER ──────────────────────────────────────────── */
+#s1{background:var(--dark);align-items:flex-start;padding:88px 96px calc(88px + var(--nav-h) + 16px)}
+.cover-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.cover-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(29,78,216,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(29,78,216,.05) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.cover-glow{position:absolute;top:-200px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.14) 0%,transparent 70%)}
+.cover-content{position:relative;z-index:1;max-width:720px}
+.cover-logo{width:96px;height:96px;object-fit:contain;margin-bottom:20px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.25))}
+.cover-tag{margin-bottom:32px}
+.cover-name{font-family:var(--font-head);font-size:clamp(68px,9.5vw,138px);font-weight:800;line-height:.95;letter-spacing:-.03em;color:var(--text-light)}
+.cover-name span{color:var(--accent)}
+.cover-role{margin-top:20px;font-size:clamp(19px,2.1vw,24px);color:rgba(240,239,248,.45);font-weight:300;letter-spacing:.04em}
+.cover-title{margin-top:48px;padding-top:32px;border-top:1px solid var(--border-dark)}
+.cover-title p{font-size:clamp(21px,2.4vw,28px);font-weight:500;color:rgba(240,239,248,.75);line-height:1.5}
+.cover-title .jp{display:block;margin-top:6px;font-size:.85em}
+
+/* ─── SECTION BREAK ──────────────────────────────────── */
+.sec-break{align-items:flex-start;justify-content:flex-end;padding:88px 96px;isolation:isolate}
+.sec-break-accent{position:absolute;inset:0;background:linear-gradient(135deg,var(--dark) 60%,rgba(29,78,216,.1) 100%);z-index:0}
+.sec-break .sec-num{color:#FFFFFF;opacity:.07;z-index:1}
+.sec-break .sec-divider{background:var(--accent-light)}
+.sec-break .tag-accent{background:rgba(59,130,246,.18);color:#93C5FD}
+.sec-break .tag-red{background:rgba(248,113,113,.18);color:#FCA5A5}
+.sec-break .tag-green{background:rgba(52,211,153,.18);color:#6EE7B7}
+.sec-break .tag-amber{background:rgba(252,211,77,.18);color:#FCD34D}
+
+/* ─── TOOL FRAGMENTATION (s3) ───────────────────────── */
+.frag-container{position:relative;width:100%;max-width:980px;height:400px;margin:0 auto;flex-shrink:0}
+.tool-pill{
+  position:absolute;background:var(--white);border:1px solid var(--border-light);
+  border-radius:8px;padding:7px 11px;
+  display:flex;align-items:center;gap:7px;
+  font-size:17px;font-weight:600;color:var(--text-dark);
+  box-shadow:0 1px 6px rgba(0,0,0,.06);white-space:nowrap;line-height:1;z-index:2;
+}
+.tool-pill .tp-logo{width:18px;height:18px;object-fit:contain;flex-shrink:0}
+.tool-pill .tp-fb{font-size:21px;flex-shrink:0;display:none}
+.pm-center{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:86px;height:86px;border-radius:50%;
+  background:rgba(185,28,28,0.07);border:2px dashed #B91C1C;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;font-size:17px;font-weight:700;color:#B91C1C;text-align:center;z-index:3;
+}
+.connect-line{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+
+/* ─── FRUSTRATIONS SLIDE (s4) ───────────────────────── */
+#s4{
+  align-items:stretch;
+  padding-left:clamp(48px,4vw,80px);
+  padding-right:clamp(48px,4vw,80px);
+}
+#s4 .cards{width:100%;max-width:none!important;gap:clamp(12px,1.5vw,18px)}
+#s4 .card{padding:18px clamp(14px,1.5vw,22px);border-radius:12px;gap:6px;min-width:0}
+#s4 .card h3{font-size:20px}
+#s4 .card p{font-size:18px;line-height:1.4}
+#s4 .card-icon{font-size:32px}
+@media (max-width:1200px){#s4 .cards-3{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){#s4 .cards-3{grid-template-columns:1fr}}
+
+/* ─── MCP FLOW STRIP (Project Overview) ─────────────── */
+.mcp-flow{
+  display:flex;align-items:center;
+  background:var(--warm2);border-radius:12px;
+  border:1px solid var(--border-light);
+  padding:14px 20px;width:100%;
+}
+.mcp-flow-box{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 14px;flex:1;text-align:center}
+.mcp-flow-box .icon{font-size:26px}
+.mcp-flow-box .label{font-family:var(--font-head);font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--text-dark)}
+.mcp-flow-box .sub{font-size:13px;color:var(--text-mid)}
+.mcp-flow-arrow{width:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--accent)}
+.mcp-flow-box.highlight .label{color:var(--accent)}
+.mcp-flow-box.highlight .sub{color:var(--accent);opacity:.7}
+
+/* ─── PHASE / ROADMAP COLUMNS ────────────────────────── */
+.phase-col{
+  background:var(--white);border-radius:16px;padding:28px 24px;
+  border:1px solid var(--border-light);
+  box-shadow:0 2px 16px rgba(0,0,0,.06);
+}
+.phase-col.future{background:var(--warm2)}
+.phase-header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.phase-title{font-family:var(--font-head);font-size:23px;font-weight:700}
+.phase-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--border-light);
+  font-size:19px;
+}
+.phase-item:last-child{border-bottom:none}
+.phase-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:7px}
+
+/* ─── WORKFLOW (interactive) ─────────────────────────── */
+.wf-container{width:100%;max-width:860px;display:flex;flex-direction:column;gap:0}
+.wf-step{
+  display:flex;align-items:flex-start;gap:16px;padding:16px 20px;border-radius:12px;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .4s ease,transform .4s ease;background:transparent;
+}
+.wf-step.revealed{opacity:1;transform:translateY(0);background:var(--white);border:1px solid var(--border-light);margin-bottom:4px}
+.wf-num{
+  width:32px;height:32px;border-radius:10px;flex-shrink:0;
+  background:var(--accent);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-head);font-size:20px;font-weight:700;
+}
+.wf-content h4{font-size:20px;font-weight:600;margin-bottom:3px}
+.wf-content p{font-size:18px;color:var(--text-mid);font-weight:300;line-height:1.5}
+.mcp-tag{display:inline-block;margin-top:5px;padding:2px 8px;border-radius:99px;font-size:15px;font-weight:600;background:var(--accent-dim);color:var(--accent);letter-spacing:.04em}
+.code-tag{display:inline-block;margin-top:4px;padding:3px 10px;border-radius:6px;font-size:14px;font-family:monospace;background:rgba(15,23,42,.06);color:var(--text-dark);border:1px solid var(--border-light)}
+.wf-progress{display:flex;gap:6px;margin-top:20px;justify-content:center}
+.wf-dot{width:8px;height:8px;border-radius:50%;background:var(--border-light);border:1px solid var(--border-light);transition:background .3s}
+.wf-dot.done{background:var(--accent)}
+
+/* ─── THANK YOU ──────────────────────────────────────── */
+#s19{background:var(--dark)}
+.ty-main{font-family:var(--font-jp);font-size:clamp(48px,6.3vw,84px);font-weight:300;letter-spacing:.1em;color:var(--text-light);text-align:center}
+.ty-en{font-family:var(--font-head);font-size:clamp(24px,3.2vw,40px);font-weight:700;color:rgba(240,239,248,.4);text-align:center;margin-top:8px;letter-spacing:.05em}
+.ty-q{margin-top:40px;text-align:center}
+.ty-q p{font-size:26px;font-weight:400;color:rgba(240,239,248,.7)}
+.ty-q .jp{font-size:19px;margin-top:6px;display:block}
+.ty-name{margin-top:52px;text-align:center;font-family:var(--font-head);font-size:28px;font-weight:700;color:rgba(240,239,248,.5)}
+
+/* ─── ANIMATIONS ─────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.slide.active .anim{animation:fadeUp .5s ease both}
+.slide.active .anim-1{animation-delay:.1s}
+.slide.active .anim-2{animation-delay:.2s}
+.slide.active .anim-3{animation-delay:.3s}
+.slide.active .anim-4{animation-delay:.4s}
+.slide.active .anim-5{animation-delay:.5s}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width:1600px){
+  .slide{padding:64px 80px calc(64px + var(--nav-h) + 10px)}
+  #s1{padding:72px 80px calc(72px + var(--nav-h) + 14px)}
+  .sec-num{font-size:clamp(82px,9vw,136px);left:44px;top:26px}
+}
+@media (max-width:1366px){
+  .slide{padding:56px 56px calc(56px + var(--nav-h) + 8px)}
+  #s1{padding:64px 56px calc(64px + var(--nav-h) + 12px)}
+  .sec-num{font-size:clamp(70px,8vw,116px);left:34px;top:20px}
+  .cards-3{grid-template-columns:1fr 1fr}
+  .overview-grid{grid-template-columns:1fr!important}
+}
+@media (max-width:1100px){
+  .slide{padding:44px 30px calc(44px + var(--nav-h) + 8px)}
+  #s1{padding:52px 30px calc(52px + var(--nav-h) + 10px)}
+  .cards-3,.cards-2{grid-template-columns:1fr}
+  .overview-grid{grid-template-columns:1fr!important}
+}
+
+/* ─── PRINT ──────────────────────────────────────────── */
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{width:1280px;height:720px;overflow:visible;background:#0F172A}
+  .deck{position:relative;width:1280px;height:auto;overflow:visible}
+  #nav,#keyHint{display:none!important}
+  .slide{position:relative!important;width:1280px!important;height:720px!important;opacity:1!important;transform:none!important;pointer-events:all!important;page-break-after:always;break-after:page;display:flex!important;flex-shrink:0}
+  .slide .anim{animation:none!important;opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ══════════════════════════════════════
+     SLIDE 1 — COVER
+════════════════════════════════════════ -->
+<div class="slide dark" id="s1">
+  <div class="cover-bg"><div class="cover-grid"></div><div class="cover-glow"></div></div>
+  <div class="cover-content">
+    <img class="cover-logo anim anim-1" src="./logo.png" alt="Project logo">
+    <div class="cover-tag anim anim-1"><span class="tag tag-accent">Software Engineering Project — V2</span></div>
+    <div class="cover-name anim anim-2">CARRIE<br><span>YU.</span></div>
+    <div class="cover-role anim anim-3">SOFTWARE ENGINEER &nbsp;·&nbsp; ソフトウェアエンジニア</div>
+    <div class="cover-title anim anim-4">
+      <p>AI Assistant Project Management Tool</p>
+      <span class="jp">AIアシスタント プロジェクト管理ツール</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 2 — SECTION BREAK: THE PROBLEM
+════════════════════════════════════════ -->
+<div class="slide dark sec-break" id="s2">
+  <div class="sec-break-accent"></div>
+  <div class="sec-num">01</div>
+  <div class="sec-label anim anim-2">
+    <span class="tag tag-red" style="margin-bottom:8px">The Problem</span>
+    <h1>Every day,<br>something breaks.</h1>
+    <div class="sec-divider"></div>
+    <span class="jp" style="font-size:1.1em">問題 — 毎日の課題</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 3 — TOOL FRAGMENTATION
+════════════════════════════════════════ -->
+<div class="slide light" id="s3" style="padding:48px 68px">
+  <div class="header-block anim anim-1" style="margin-bottom:20px">
+    <div class="slide-title">The Fragmented Reality</div>
+    <div class="slide-subtitle">Project managers live across all of these tools simultaneously
+      <span class="jp-sub" style="display:inline-block;margin-left:8px">プロジェクトマネージャーは複数のツールを常に切り替えています</span>
+    </div>
+  </div>
+  <div class="frag-container anim anim-2">
+    <svg class="connect-line" viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg">
+      <line x1="810" y1="180" x2="533" y2="180" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="778" y1="232" x2="533" y2="197" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="686" y1="274" x2="522" y2="210" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="554" y1="297" x2="508" y2="223" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="406" y1="297" x2="472" y2="223" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="274" y1="274" x2="458" y2="210" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="182" y1="232" x2="447" y2="197" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="150" y1="180" x2="447" y2="180" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="182" y1="128" x2="447" y2="163" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="274" y1="86"  x2="458" y2="150" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="406" y1="63"  x2="472" y2="137" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="554" y1="63"  x2="508" y2="137" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="686" y1="86"  x2="522" y2="150" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+      <line x1="778" y1="128" x2="533" y2="163" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4,4" opacity=".35"/>
+    </svg>
+    <div class="tool-pill" style="left:753px;top:163px"><img class="tp-logo" src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">✉️</span> Gmail</div>
+    <div class="tool-pill" style="left:721px;top:215px"><img class="tp-logo" src="https://cdn.simpleicons.org/openai/10A37F" alt="ChatGPT" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">💡</span> ChatGPT</div>
+    <div class="tool-pill" style="left:629px;top:257px"><img class="tp-logo" src="https://cdn.simpleicons.org/googledocs/4285F4" alt="Google Docs" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">📄</span> Google Docs</div>
+    <div class="tool-pill" style="left:497px;top:280px"><img class="tp-logo" src="https://cdn.simpleicons.org/miro/050038" alt="Miro" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">🎨</span> Miro</div>
+    <div class="tool-pill" style="left:349px;top:280px"><img class="tp-logo" src="https://cdn.simpleicons.org/diagramsdotnet/F08705" alt="Draw.io" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">📐</span> Draw.io</div>
+    <div class="tool-pill" style="left:205px;top:257px"><img class="tp-logo" src="https://cdn.simpleicons.org/plantuml/AA2222" alt="PlantUML" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">🌿</span> PlantUML</div>
+    <div class="tool-pill" style="left:113px;top:215px"><img class="tp-logo" src="https://cdn.simpleicons.org/slack/4A154B" alt="Slack" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">💬</span> Slack</div>
+    <div class="tool-pill" style="left:80px;top:163px"><img class="tp-logo" src="https://cdn.simpleicons.org/perplexity/20808D" alt="Perplexity" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">🔎</span> Perplexity</div>
+    <div class="tool-pill" style="left:113px;top:111px"><img class="tp-logo" src="https://cdn.simpleicons.org/clickup/7B68EE" alt="ClickUp" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">☑️</span> ClickUp</div>
+    <div class="tool-pill" style="left:205px;top:69px"><img class="tp-logo" src="https://cdn.simpleicons.org/jira/0052CC" alt="Jira" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">🏃</span> Jira</div>
+    <div class="tool-pill" style="left:349px;top:46px"><img class="tp-logo" src="https://cdn.simpleicons.org/googlecalendar/1A73E8" alt="Google Calendar" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">📅</span> Google Calendar</div>
+    <div class="tool-pill" style="left:497px;top:46px"><img class="tp-logo" src="https://cdn.simpleicons.org/backlog/226EC9" alt="Backlog" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">📋</span> Backlog</div>
+    <div class="tool-pill" style="left:629px;top:69px"><img class="tp-logo" src="https://cdn.simpleicons.org/microsoftteams/6264A7" alt="Microsoft Teams" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">🏢</span> Microsoft Teams</div>
+    <div class="tool-pill" style="left:721px;top:111px"><img class="tp-logo" src="https://cdn.simpleicons.org/anthropic/D97757" alt="Claude" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="tp-fb">🧠</span> Claude</div>
+    <div class="pm-center" style="left:490px">😵<br>PM</div>
+  </div>
+  <p class="anim anim-3" style="font-size:19px;color:var(--text-mid);margin-top:16px;text-align:center;font-weight:300">
+    Switching between tools dozens of times a day &nbsp;·&nbsp; <span class="jp" style="font-size:1em">毎日何十回もツールを切り替える</span>
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 4 — EVERYDAY FRUSTRATIONS
+════════════════════════════════════════ -->
+<div class="slide light" id="s4">
+  <div class="header-block anim anim-1">
+    <div class="slide-title">Everyday Frustrations</div>
+    <div class="slide-subtitle">Real problems, every single day <span class="jp-sub" style="display:inline-block;margin-left:6px">毎日直面する現実の課題</span></div>
+  </div>
+  <div class="cards cards-3">
+    <div class="card red anim anim-2"><span class="card-icon">🔀</span><h3>Too Many Tools, No Single View</h3><span class="jp" style="font-size:.88em">ツールが多すぎる、一元管理ができない</span><p>Task status, schedules, and messages are scattered across platforms. Getting the full picture means opening everything manually — every time.</p></div>
+    <div class="card red anim anim-3"><span class="card-icon">⏱️</span><h3>Coordination Done Entirely by Hand</h3><span class="jp" style="font-size:.88em">手作業での調整</span><p>Chasing status updates, scheduling meetings, sending notifications, writing sprint reports — all manual, repetitive, and time-consuming.</p></div>
+    <div class="card red anim anim-4"><span class="card-icon">📊</span><h3>Report Generation Takes Time</h3><span class="jp" style="font-size:.88em">レポート作成に時間がかかる</span><p>Weekly status reports require manual data gathering from multiple tools, taking hours that could be spent resolving real project risks.</p></div>
+    <div class="card red anim anim-5"><span class="card-icon">🧩</span><h3>Context Gets Lost Across Conversations</h3><span class="jp" style="font-size:.88em">会話間で文脈が失われる</span><p>Decisions and task changes are buried in chat threads and meetings, making it hard to track why something changed and who owns it.</p></div>
+    <div class="card red anim anim-4"><span class="card-icon">⚠️</span><h3>Problems Surface Too Late</h3><span class="jp" style="font-size:.88em">問題が遅れて発覚する</span><p>A team member can be blocked for 2+ days before the PM knows. By then, the sprint is already at risk.</p></div>
+    <div class="card red anim anim-5"><span class="card-icon">🆕</span><h3>New Tool = Team Disruption</h3><span class="jp" style="font-size:.88em">新ツールはチームを混乱させる</span><p>Every new capability means a new platform — learning curves, data migration, and weeks before the team is productive again.</p></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 5 — SECTION BREAK: ROOT CAUSE
+════════════════════════════════════════ -->
+<div class="slide dark sec-break" id="s5">
+  <div class="sec-break-accent"></div>
+  <div class="sec-num">01.1</div>
+  <div class="sec-label anim anim-2">
+    <span class="tag tag-red" style="margin-bottom:8px">Root Cause</span>
+    <h1>What are we<br>really solving?</h1>
+    <div class="sec-divider"></div>
+    <span class="jp" style="font-size:1.1em">本質的な問題 — 私たちが本当に解決すること</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 6 — THE REAL PROBLEM
+════════════════════════════════════════ -->
+<div class="slide light" id="s6">
+  <div class="header-block anim anim-1">
+    <div class="slide-title">What is the real problem?</div>
+    <div class="slide-subtitle">Too many tools is not the problem — the problem is that the PM has to connect everything alone
+      <span class="jp-sub" style="display:inline-block;margin-left:6px">ツールが多いことより、PMが一人ですべてを繋いでいることが問題</span>
+    </div>
+  </div>
+  <div class="cards cards-3" style="max-width:1200px">
+    <div class="card red anim anim-2"><span class="card-icon">⏳</span><h3>Most of the day is not real work</h3><span class="jp" style="font-size:.88em">一日の多くは本来の仕事ではない</span><p>PMs spend most of their time checking status, writing updates, and sending messages — not actually leading the project.</p></div>
+    <div class="card red anim anim-3"><span class="card-icon">🧩</span><h3>No one place to see everything</h3><span class="jp" style="font-size:.88em">すべてを見られる場所がない</span><p>To answer one question like "Is this project on track?", a PM has to open 4 or 5 different tools and check each one manually.</p></div>
+    <div class="card red anim anim-4"><span class="card-icon">🔇</span><h3>Problems are hard to notice in time</h3><span class="jp" style="font-size:.88em">問題に気づくのが遅れる</span><p>Important information — like a delay or a blocker — is spread across Slack, Backlog, and Calendar. Nobody is watching all of them at once.</p></div>
+  </div>
+  <p class="anim anim-5" style="margin-top:20px;font-size:19px;color:var(--text-mid);text-align:center;font-weight:300;max-width:700px">
+    The PM becomes the only person who connects all the information — and that takes time away from leading.
+    <span class="jp-sub" style="display:inline-block;margin-top:4px">PMがすべての情報を繋ぐ唯一の存在になってしまう — それがリーダーシップの時間を奪っている</span>
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 7 — SECTION BREAK: TARGET USER
+════════════════════════════════════════ -->
+<div class="slide dark sec-break" id="s7">
+  <div class="sec-break-accent"></div>
+  <div class="sec-num">02</div>
+  <div class="sec-label anim anim-2">
+    <span class="tag tag-accent" style="margin-bottom:8px">Target User</span>
+    <h1>Who is<br>this for?</h1>
+    <div class="sec-divider"></div>
+    <span class="jp" style="font-size:1.1em">対象ユーザー — 誰のためのツールか</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 8 — TARGET USER CONTENT
+════════════════════════════════════════ -->
+<div class="slide light" id="s8">
+  <div class="header-block anim anim-1">
+    <div class="slide-title">Who Uses This Tool</div>
+    <div class="slide-subtitle">Three roles. Three kinds of friction. One solution.
+      <span class="jp-sub" style="display:inline-block;margin-left:6px">三つの役割、三つの課題、一つの解決策</span>
+    </div>
+  </div>
+  <div class="cards cards-3" style="max-width:1100px">
+    <div class="card anim anim-2" style="gap:12px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:36px">👩‍💼</span><div><h3 style="font-size:22px;margin:0">Project Manager</h3><span class="jp" style="font-size:.82em">プロジェクトマネージャー</span></div></div>
+      <p style="font-size:17px;font-weight:500;color:var(--text-dark);margin-bottom:4px">Primary user — needs full project visibility and automated coordination</p>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Sprint status and blocker reports</span></div>
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Auto-generated status documents</span></div>
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Meeting scheduling from chat</span></div>
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Slack alerts on critical changes</span></div>
+      </div>
+    </div>
+    <div class="card anim anim-3" style="gap:12px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:36px">🧑‍💻</span><div><h3 style="font-size:22px;margin:0">Team Leader</h3><span class="jp" style="font-size:.82em">チームリーダー</span></div></div>
+      <p style="font-size:17px;font-weight:500;color:var(--text-dark);margin-bottom:4px">Needs team workload visibility without constant manual check-ins</p>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Who is overloaded vs. available</span></div>
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Tasks not started or overdue</span></div>
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Send deadline reminders via AI</span></div>
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Sprint completion at a glance</span></div>
+      </div>
+    </div>
+    <div class="card anim anim-4" style="gap:12px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:36px">👔</span><div><h3 style="font-size:22px;margin:0">Senior Manager</h3><span class="jp" style="font-size:.82em">シニアマネージャー</span></div></div>
+      <p style="font-size:17px;font-weight:500;color:var(--text-dark);margin-bottom:4px">Needs high-level project health without waiting for reports</p>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Weekly summaries across all projects</span></div>
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Risk alerts before issues escalate</span></div>
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>Ask any question about status</span></div>
+        <div style="display:flex;gap:8px;font-size:18px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">→</span><span>No dependency on PM to prepare reports</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 9 — SECTION BREAK: PROJECT OVERVIEW
+════════════════════════════════════════ -->
+<div class="slide dark sec-break" id="s9">
+  <div class="sec-break-accent"></div>
+  <div class="sec-num">03</div>
+  <div class="sec-label anim anim-2">
+    <span class="tag tag-accent" style="margin-bottom:8px">Project Overview</span>
+    <h1>The solution<br>we built.</h1>
+    <div class="sec-divider"></div>
+    <span class="jp" style="font-size:1.1em">プロジェクト概要 — 私たちが構築した解決策</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 10 — PROJECT OVERVIEW CONTENT
+════════════════════════════════════════ -->
+<div class="slide light" id="s10">
+  <div class="overview-grid anim anim-1" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;width:100%;max-width:1200px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div>
+        <span class="tag tag-accent" style="margin-bottom:12px;display:inline-block">Project Overview</span>
+        <h2 style="font-family:var(--font-head);font-size:clamp(26px,3vw,40px);font-weight:800;line-height:1.1;letter-spacing:-.02em">AI Assistant PM Tool<br><span style="color:var(--accent)">powered by MCP</span></h2>
+        <div class="rule" style="margin:12px 0"></div>
+        <p style="font-size:19px;color:var(--text-mid);font-weight:300;line-height:1.6">A conversational AI that uses <strong style="color:var(--text-dark)">Model Context Protocol (MCP)</strong> to connect Claude securely to your existing PM tools — so you can ask questions and take actions across all of them from a single interface.</p>
+      </div>
+      <div class="mcp-flow">
+        <div class="mcp-flow-box"><span class="icon">👩‍💼</span><span class="label">YOU</span><span class="sub">ask in chat</span></div>
+        <div class="mcp-flow-arrow">→</div>
+        <div class="mcp-flow-box"><span class="icon">🤖</span><span class="label">CLAUDE</span><span class="sub">interprets intent</span></div>
+        <div class="mcp-flow-arrow" style="font-weight:700">→</div>
+        <div class="mcp-flow-box highlight" style="background:var(--accent-dim);border-radius:8px;padding:6px 14px"><span class="icon">🔌</span><span class="label">MCP</span><span class="sub">secure bridge</span></div>
+        <div class="mcp-flow-arrow">→</div>
+        <div class="mcp-flow-box"><span class="icon">🛠️</span><span class="label">TOOLS</span><span class="sub">live data &amp; actions</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;gap:12px;align-items:flex-start"><span style="min-width:26px;height:26px;border-radius:7px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:16px;font-weight:700;flex-shrink:0">1</span><span style="font-size:18px;padding-top:2px">Ask in plain language — the AI calls the right MCP server automatically</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><span style="min-width:26px;height:26px;border-radius:7px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:16px;font-weight:700;flex-shrink:0">2</span><span style="font-size:18px;padding-top:2px">Take actions without switching tabs — schedule, create, notify</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start"><span style="min-width:26px;height:26px;border-radius:7px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:16px;font-weight:700;flex-shrink:0">3</span><span style="font-size:18px;padding-top:2px">No team disruption — Backlog, Slack &amp; Calendar stay exactly as they are</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card accent" style="gap:10px;padding:20px"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🤖</span><h3 style="font-size:19px">AI Engine — Claude</h3></div><p style="font-size:17px">Anthropic's Claude acts as the reasoning engine — interprets your intent and decides which MCP server to call and what action to take.</p></div>
+      <div class="card amber" style="gap:10px;padding:20px"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🔌</span><h3 style="font-size:19px">Protocol — MCP</h3></div><p style="font-size:17px">Model Context Protocol is the secure, standardized bridge between Claude and each tool. One universal standard — no custom integrations, no credential exposure.</p></div>
+      <div class="card green" style="gap:10px;padding:20px"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🛠️</span><h3 style="font-size:19px">Tools Connected</h3></div><p style="font-size:17px">Backlog · Slack · Google Calendar — connected today via MCP servers. Any MCP-compatible tool can be added without changing the AI.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 11 — SECTION BREAK: WHAT YOU GET BACK
+════════════════════════════════════════ -->
+<div class="slide dark sec-break" id="s11">
+  <div class="sec-break-accent"></div>
+  <div class="sec-num">04</div>
+  <div class="sec-label anim anim-2">
+    <span class="tag tag-green" style="margin-bottom:8px">What You Get Back</span>
+    <h1>Time back.<br>Better results.</h1>
+    <div class="sec-divider" style="background:var(--accent-light)"></div>
+    <span class="jp" style="font-size:1.1em">得られる価値 — 時間と成果の改善</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 12 — WHAT YOU GET BACK CONTENT
+════════════════════════════════════════ -->
+<div class="slide light" id="s12">
+  <div class="header-block anim anim-1">
+    <div class="slide-title">What You Get Back</div>
+    <div class="slide-subtitle">Time and focus returned to the people who need it most
+      <span class="jp-sub" style="display:inline-block;margin-left:6px">必要な人に時間と集中力を取り戻す</span>
+    </div>
+  </div>
+  <div class="cards cards-3" style="max-width:1100px">
+    <div class="card anim anim-2" style="align-items:center;text-align:center;gap:8px">
+      <span style="font-size:44px">📊</span>
+      <div style="font-family:var(--font-head);font-size:50px;font-weight:800;color:var(--accent);line-height:1">~2 hrs</div>
+      <div style="font-size:17px;color:var(--text-mid);font-weight:700;letter-spacing:.05em">SAVED PER REPORT</div>
+      <p style="font-size:19px">Status reports that used to take 2 hours of manual work are now written automatically by the AI in seconds.</p>
+    </div>
+    <div class="card anim anim-3" style="align-items:center;text-align:center;gap:8px">
+      <span style="font-size:44px">☀️</span>
+      <div style="font-family:var(--font-head);font-size:50px;font-weight:800;color:var(--accent);line-height:1">45 min</div>
+      <div style="font-size:17px;color:var(--text-mid);font-weight:700;letter-spacing:.05em">SAVED EVERY MORNING</div>
+      <p style="font-size:19px">The daily check across Backlog, Slack, and Calendar is replaced by one AI-generated briefing when you start your day.</p>
+    </div>
+    <div class="card anim anim-4" style="align-items:center;text-align:center;gap:8px">
+      <span style="font-size:44px">⚡</span>
+      <div style="font-family:var(--font-head);font-size:50px;font-weight:800;color:var(--red);line-height:1">Days→Min</div>
+      <div style="font-size:17px;color:var(--text-mid);font-weight:700;letter-spacing:.05em">FASTER BLOCKER DETECTION</div>
+      <p style="font-size:19px">Blockers that used to go unnoticed for 2+ days are now flagged the moment they appear — before the sprint is at risk.</p>
+    </div>
+  </div>
+  <p class="anim anim-5" style="margin-top:22px;font-size:19px;color:var(--text-mid);text-align:center;font-weight:300;max-width:680px">
+    When the AI handles the coordination, the PM becomes the leader they were hired to be.
+    <span class="jp-sub" style="display:inline-block;margin-top:4px">AIが調整を担うとき、PMは本来のリーダーになれる</span>
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 13 — SECTION BREAK: WHY MCP
+════════════════════════════════════════ -->
+<div class="slide dark sec-break" id="s13">
+  <div class="sec-break-accent"></div>
+  <div class="sec-num">05</div>
+  <div class="sec-label anim anim-2">
+    <span class="tag tag-accent" style="margin-bottom:8px">Why MCP</span>
+    <h1>Why we<br>chose MCP.</h1>
+    <div class="sec-divider"></div>
+    <span class="jp" style="font-size:1.1em">MCPを選んだ理由</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 14 — WHY MCP CONTENT
+════════════════════════════════════════ -->
+<div class="slide light" id="s14">
+  <div class="header-block anim anim-1">
+    <div class="slide-title">Why Model Context Protocol?</div>
+    <div class="slide-subtitle">Not a custom integration for each tool — a universal standard. Here's why that matters.
+      <span class="jp-sub" style="display:inline-block;margin-left:6px">各ツールへの独自統合ではなく、普遍的な標準プロトコル</span>
+    </div>
+  </div>
+  <div class="cards cards-2" style="max-width:980px">
+    <div class="card accent anim anim-2" style="gap:10px"><span style="font-size:36px">🔌</span><h3>One Standard, Any Tool</h3><span class="jp" style="font-size:.85em">一つの標準、あらゆるツール</span><p>MCP is an open protocol by Anthropic. Instead of writing a custom integration per tool, the AI speaks one language that any MCP-compatible tool understands. Adding a new tool means one new server — not a rewrite.</p></div>
+    <div class="card amber anim anim-3" style="gap:10px"><span style="font-size:36px">🔒</span><h3>Secure by Design</h3><span class="jp" style="font-size:.85em">設計段階からセキュア</span><p>Each MCP server is a controlled gateway. The AI never touches credentials or raw APIs directly — it receives only what the server explicitly allows. Access is permission-scoped and auditable.</p></div>
+    <div class="card green anim anim-4" style="gap:10px"><span style="font-size:36px">👥</span><h3>Zero Team Disruption</h3><span class="jp" style="font-size:.85em">チームへの影響ゼロ</span><p>Teams keep using Backlog, Slack, and Calendar exactly as before. MCP reads and writes in the background — the only experience that changes is the PM's.</p></div>
+    <div class="card red anim anim-5" style="gap:10px"><span style="font-size:36px">⚡</span><h3>Real-Time, Not Cached</h3><span class="jp" style="font-size:.85em">リアルタイムデータ</span><p>Every MCP call fetches live data from the source system. The AI always answers with the current state of your sprint — not a stale snapshot from hours ago.</p></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 15 — SECTION BREAK: HOW MCP WORKS
+════════════════════════════════════════ -->
+<div class="slide dark sec-break" id="s15">
+  <div class="sec-break-accent"></div>
+  <div class="sec-num">06</div>
+  <div class="sec-label anim anim-2">
+    <span class="tag tag-green" style="margin-bottom:8px">How MCP Works</span>
+    <h1>Inside<br>the flow.</h1>
+    <div class="sec-divider" style="background:var(--accent-light)"></div>
+    <span class="jp" style="font-size:1.1em">MCPの仕組み — このプロジェクトで</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 16 — HOW MCP WORKS (INTERACTIVE)
+════════════════════════════════════════ -->
+<div class="slide light" id="s16">
+  <div class="header-block anim anim-1">
+    <div class="slide-title">How MCP Works in This Project</div>
+    <div class="slide-subtitle">Press <kbd style="background:var(--white);border:1px solid var(--border-light);padding:1px 6px;border-radius:4px;font-size:.85em">→</kbd> to walk through each step
+      <span class="jp-sub" style="display:inline-block;margin-left:6px">→ キーで各ステップを表示</span>
+    </div>
+  </div>
+  <div class="wf-container" id="wf">
+    <div class="wf-step" id="wf1"><div class="wf-num">1</div><div class="wf-content"><h4>PM asks: "What's blocking the current sprint?"</h4><p>A natural language question typed into the chat interface — no tool navigation or knowledge of the underlying systems needed.</p></div></div>
+    <div class="wf-step" id="wf2"><div class="wf-num">2</div><div class="wf-content"><h4>Claude interprets the intent</h4><p>The AI understands the goal — retrieve blocked tasks from the active sprint. It selects the right MCP server to call.</p><span class="mcp-tag">Backlog MCP selected</span></div></div>
+    <div class="wf-step" id="wf3"><div class="wf-num">3</div><div class="wf-content"><h4>MCP server calls the Backlog API</h4><p>The Backlog MCP server translates the AI's request into a real API call and returns structured task data — securely, with no credentials exposed to the model.</p><span class="code-tag">GET /api/v2/issues?projectId=X&amp;statusId=blocked</span></div></div>
+    <div class="wf-step" id="wf4"><div class="wf-num">4</div><div class="wf-content"><h4>Claude synthesizes an answer</h4><p>Instead of raw JSON, the AI generates a readable summary — task names, owners, how long each has been blocked, and suggested next steps.</p></div></div>
+    <div class="wf-step" id="wf5"><div class="wf-num">5</div><div class="wf-content"><h4>PM gets a clear, actionable answer — instantly</h4><p>"2 tasks are blocked: <em>[Task A]</em> waiting on API spec · 3 days, Kenji &nbsp;·&nbsp; <em>[Task B]</em> pending design review · 1 day, Aoi."</p><span class="mcp-tag" style="background:var(--green-dim);color:var(--green)">No tabs opened · No manual checking</span></div></div>
+    <div class="wf-progress">
+      <div class="wf-dot" id="wd1"></div><div class="wf-dot" id="wd2"></div><div class="wf-dot" id="wd3"></div><div class="wf-dot" id="wd4"></div><div class="wf-dot" id="wd5"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 17 — SECTION BREAK: ROADMAP
+════════════════════════════════════════ -->
+<div class="slide dark sec-break" id="s17">
+  <div class="sec-break-accent"></div>
+  <div class="sec-num">07</div>
+  <div class="sec-label anim anim-2">
+    <span class="tag tag-accent" style="margin-bottom:8px">Roadmap</span>
+    <h1>What's next<br>from here.</h1>
+    <div class="sec-divider"></div>
+    <span class="jp" style="font-size:1.1em">ロードマップ — 今後の展望</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 18 — ROADMAP CONTENT
+════════════════════════════════════════ -->
+<div class="slide light" id="s18">
+  <div class="header-block anim anim-1">
+    <div class="slide-title">Roadmap — Two Phases</div>
+    <div class="slide-subtitle">MVP now. Intelligence layer next.
+      <span class="jp-sub" style="display:inline-block;margin-left:6px">まずMVP。次にインテリジェンス層へ</span>
+    </div>
+  </div>
+  <div class="cards cards-2" style="max-width:820px">
+    <div class="phase-col anim anim-2">
+      <div class="phase-header">
+        <span class="tag tag-accent">MVP — Now</span>
+        <span class="jp" style="font-size:.88em">現在のフェーズ</span>
+      </div>
+      <div class="phase-item"><span class="phase-dot" style="background:var(--accent)"></span><div><strong>Backlog MCP</strong> — Task retrieval, priorities &amp; blockers</div></div>
+      <div class="phase-item"><span class="phase-dot" style="background:var(--accent)"></span><div><strong>Google Calendar MCP</strong> — Availability &amp; meeting creation</div></div>
+      <div class="phase-item"><span class="phase-dot" style="background:var(--accent)"></span><div><strong>Slack MCP</strong> — Automated notifications &amp; alerts</div></div>
+      <div class="phase-item" style="border-bottom:none"><span class="phase-dot" style="background:var(--accent)"></span><div><strong>Single conversational interface</strong></div></div>
+    </div>
+    <div class="phase-col future anim anim-3">
+      <div class="phase-header">
+        <span class="tag tag-green">Future — Next</span>
+        <span class="jp" style="font-size:.88em">将来のフェーズ</span>
+      </div>
+      <div class="phase-item"><span class="phase-dot" style="background:var(--green)"></span><div><strong>Sprint Risk Prediction</strong> 🟢🟡🔴</div></div>
+      <div class="phase-item"><span class="phase-dot" style="background:var(--green)"></span><div><strong>Workload Distribution Map</strong></div></div>
+      <div class="phase-item"><span class="phase-dot" style="background:var(--green)"></span><div><strong>Burnout Detection &amp; Morning Briefing</strong></div></div>
+      <div class="phase-item" style="border-bottom:none"><span class="phase-dot" style="background:var(--green)"></span><div><strong>Google Docs MCP</strong> — Unified project view</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 19 — THANK YOU
+════════════════════════════════════════ -->
+<div class="slide dark" id="s19">
+  <div class="cover-bg"><div class="cover-grid"></div><div class="cover-glow" style="top:auto;bottom:-200px;left:-200px;right:auto"></div></div>
+  <div style="position:relative;z-index:1;text-align:center">
+    <div class="ty-main anim anim-1">ありがとうございました</div>
+    <div class="ty-en anim anim-2">THANK YOU</div>
+    <div class="ty-q anim anim-3"><p>Questions?</p><span class="jp">質問はありますか？</span></div>
+    <div class="ty-name anim anim-4">Carrie Yu &nbsp;·&nbsp; Software Engineer</div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- ── NAVIGATION BAR ─────────────────────────────────── -->
+<div id="nav">
+  <div class="sections" id="sec-dots">
+    <div class="sec-dot active-sec" data-section="0" title="Cover"             onclick="jumpSection(0)"></div>
+    <div class="sec-dot"            data-section="1" title="The Problem"       onclick="jumpSection(1)"></div>
+    <div class="sec-dot"            data-section="2" title="Root Cause"        onclick="jumpSection(2)"></div>
+    <div class="sec-dot"            data-section="3" title="Target User"       onclick="jumpSection(3)"></div>
+    <div class="sec-dot"            data-section="4" title="Project Overview"  onclick="jumpSection(4)"></div>
+    <div class="sec-dot"            data-section="5" title="What You Get Back" onclick="jumpSection(5)"></div>
+    <div class="sec-dot"            data-section="6" title="Why MCP"           onclick="jumpSection(6)"></div>
+    <div class="sec-dot"            data-section="7" title="How MCP Works"     onclick="jumpSection(7)"></div>
+    <div class="sec-dot"            data-section="8" title="Roadmap"           onclick="jumpSection(8)"></div>
+  </div>
+  <div id="slide-counter">1 / 19</div>
+  <div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" onclick="prev()" title="Previous (←)">‹</button>
+    <button class="nav-btn" id="nextBtn" onclick="next()" title="Next (→)">›</button>
+  </div>
+</div>
+
+<div class="key-hint" id="keyHint">Use ← → arrow keys to navigate</div>
+
+<script>
+// ── SLIDE DATA ──────────────────────────────────────────
+const slides = document.querySelectorAll('.slide');
+const TOTAL  = slides.length; // 19
+let current  = 0;
+let wfStep   = 0;
+const WF_SLIDE = 15; // 0-indexed: slide id="s16"
+const WF_STEPS = 5;
+
+// Section start indices (0-indexed):
+// 0:Cover  1:Problem  4:RootCause  6:TargetUser  8:ProjectOverview  10:WhatYouGetBack  12:WhyMCP  14:HowMCPWorks  16:Roadmap
+const sectionStarts = [0, 1, 4, 6, 8, 10, 12, 14, 16];
+
+// ── NAVIGATION ──────────────────────────────────────────
+function goTo(n, dir) {
+  if (n < 0 || n >= TOTAL) return;
+  const prevEl = slides[current];
+  const nextEl = slides[n];
+  if (!nextEl) return;
+  prevEl.classList.remove('active');
+  prevEl.classList.add('exit-left');
+  setTimeout(() => prevEl.classList.remove('exit-left'), 600);
+  current = n;
+  nextEl.style.transform = dir > 0 ? 'translateX(80px)' : 'translateX(-80px)';
+  nextEl.classList.add('active');
+  try {
+    nextEl.querySelectorAll('.anim').forEach(el => {
+      el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
+    });
+  } catch (_) {}
+  setTimeout(() => { nextEl.style.transform = ''; }, 10);
+  updateUI();
+}
+
+function next() {
+  if (current === WF_SLIDE && wfStep < WF_STEPS) { revealWfStep(wfStep); wfStep++; return; }
+  goTo(current + 1, 1);
+}
+
+function prev() {
+  goTo(current - 1, -1);
+  if (current === WF_SLIDE) resetWorkflow();
+}
+
+function jumpSection(sIdx) {
+  const target = sectionStarts[sIdx];
+  if (target !== undefined) goTo(target, target > current ? 1 : -1);
+}
+
+// ── WORKFLOW ────────────────────────────────────────────
+function revealWfStep(idx) {
+  const stepEl = document.getElementById('wf' + (idx + 1));
+  const dotEl  = document.getElementById('wd' + (idx + 1));
+  if (stepEl) stepEl.classList.add('revealed');
+  if (dotEl)  dotEl.classList.add('done');
+}
+
+function resetWorkflow() {
+  wfStep = 0;
+  for (let i = 1; i <= WF_STEPS; i++) {
+    const s = document.getElementById('wf' + i);
+    const d = document.getElementById('wd' + i);
+    if (s) s.classList.remove('revealed');
+    if (d) d.classList.remove('done');
+  }
+}
+
+// ── UI UPDATE ───────────────────────────────────────────
+function updateUI() {
+  document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + TOTAL;
+  const dots = document.querySelectorAll('.sec-dot');
+  let activeSec = 0;
+  for (let i = sectionStarts.length - 1; i >= 0; i--) {
+    if (current >= sectionStarts[i]) { activeSec = i; break; }
+  }
+  dots.forEach((d, i) => d.classList.toggle('active-sec', i === activeSec));
+  document.getElementById('prevBtn').style.opacity = current === 0         ? '.3' : '1';
+  document.getElementById('nextBtn').style.opacity = current === TOTAL - 1 ? '.3' : '1';
+}
+
+// ── KEYBOARD ────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); next(); }
+  if (['ArrowLeft','ArrowUp'].includes(e.key))         { e.preventDefault(); prev(); }
+});
+
+// ── TOUCH / SWIPE ───────────────────────────────────────
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+}, {passive:true});
+
+// ── INIT ─────────────────────────────────────────────────
+slides[0].classList.add('active');
+updateUI();
+
+let hintShown = true;
+document.addEventListener('keydown', () => {
+  if (hintShown) { document.getElementById('keyHint').style.opacity = '0'; hintShown = false; }
+}, { once: false });
+setTimeout(() => { document.getElementById('keyHint').style.opacity = '0'; }, 5000);
+</script>
+</body>
+</html>
