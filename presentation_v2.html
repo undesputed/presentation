@@ -489,12 +489,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-fam
         <span class="tag tag-accent" style="margin-bottom:12px;display:inline-block">Project Overview</span>
         <h2 style="font-family:var(--font-head);font-size:clamp(26px,3vw,40px);font-weight:800;line-height:1.1;letter-spacing:-.02em">AI Assistant PM Tool<br><span style="color:var(--accent)">powered by MCP</span></h2>
         <div class="rule" style="margin:12px 0"></div>
-        <p style="font-size:19px;color:var(--text-mid);font-weight:300;line-height:1.6">A conversational AI that uses <strong style="color:var(--text-dark)">Model Context Protocol (MCP)</strong> to connect Claude securely to your existing PM tools — so you can ask questions and take actions across all of them from a single interface.</p>
+        <p style="font-size:19px;color:var(--text-mid);font-weight:300;line-height:1.6">A conversational AI that uses <strong style="color:var(--text-dark)">Model Context Protocol (MCP)</strong> to connect AI securely to your existing PM tools — so you can ask questions and take actions across all of them from a single interface.</p>
       </div>
       <div class="mcp-flow">
         <div class="mcp-flow-box"><span class="icon">👩‍💼</span><span class="label">YOU</span><span class="sub">ask in chat</span></div>
         <div class="mcp-flow-arrow">→</div>
-        <div class="mcp-flow-box"><span class="icon">🤖</span><span class="label">CLAUDE</span><span class="sub">interprets intent</span></div>
+        <div class="mcp-flow-box"><span class="icon">🤖</span><span class="label">AI</span><span class="sub">interprets intent</span></div>
         <div class="mcp-flow-arrow" style="font-weight:700">→</div>
         <div class="mcp-flow-box highlight" style="background:var(--accent-dim);border-radius:8px;padding:6px 14px"><span class="icon">🔌</span><span class="label">MCP</span><span class="sub">secure bridge</span></div>
         <div class="mcp-flow-arrow">→</div>
@@ -507,7 +507,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-fam
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="card accent" style="gap:10px;padding:20px"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🤖</span><h3 style="font-size:19px">AI Engine — Claude</h3></div><p style="font-size:17px">Anthropic's Claude acts as the reasoning engine — interprets your intent and decides which MCP server to call and what action to take.</p></div>
+      <div class="card accent" style="gap:10px;padding:20px"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🤖</span><h3 style="font-size:19px">AI Engine — AI</h3></div><p style="font-size:17px">Anthropic's Claude acts as the reasoning engine — interprets your intent and decides which MCP server to call and what action to take.</p></div>
       <div class="card amber" style="gap:10px;padding:20px"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🔌</span><h3 style="font-size:19px">Protocol — MCP</h3></div><p style="font-size:17px">Model Context Protocol is the secure, standardized bridge between Claude and each tool. One universal standard — no custom integrations, no credential exposure.</p></div>
       <div class="card green" style="gap:10px;padding:20px"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🛠️</span><h3 style="font-size:19px">Tools Connected</h3></div><p style="font-size:17px">Backlog · Slack · Google Calendar — connected today via MCP servers. Any MCP-compatible tool can be added without changing the AI.</p></div>
     </div>
@@ -622,9 +622,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-fam
   </div>
   <div class="wf-container" id="wf">
     <div class="wf-step" id="wf1"><div class="wf-num">1</div><div class="wf-content"><h4>PM asks: "What's blocking the current sprint?"</h4><p>A natural language question typed into the chat interface — no tool navigation or knowledge of the underlying systems needed.</p></div></div>
-    <div class="wf-step" id="wf2"><div class="wf-num">2</div><div class="wf-content"><h4>Claude interprets the intent</h4><p>The AI understands the goal — retrieve blocked tasks from the active sprint. It selects the right MCP server to call.</p><span class="mcp-tag">Backlog MCP selected</span></div></div>
+    <div class="wf-step" id="wf2"><div class="wf-num">2</div><div class="wf-content"><h4>AI interprets the intent</h4><p>The AI understands the goal — retrieve blocked tasks from the active sprint. It selects the right MCP server to call.</p><span class="mcp-tag">Backlog MCP selected</span></div></div>
     <div class="wf-step" id="wf3"><div class="wf-num">3</div><div class="wf-content"><h4>MCP server calls the Backlog API</h4><p>The Backlog MCP server translates the AI's request into a real API call and returns structured task data — securely, with no credentials exposed to the model.</p><span class="code-tag">GET /api/v2/issues?projectId=X&amp;statusId=blocked</span></div></div>
-    <div class="wf-step" id="wf4"><div class="wf-num">4</div><div class="wf-content"><h4>Claude synthesizes an answer</h4><p>Instead of raw JSON, the AI generates a readable summary — task names, owners, how long each has been blocked, and suggested next steps.</p></div></div>
+    <div class="wf-step" id="wf4"><div class="wf-num">4</div><div class="wf-content"><h4>AI synthesizes an answer</h4><p>Instead of raw JSON, the AI generates a readable summary — task names, owners, how long each has been blocked, and suggested next steps.</p></div></div>
     <div class="wf-step" id="wf5"><div class="wf-num">5</div><div class="wf-content"><h4>PM gets a clear, actionable answer — instantly</h4><p>"2 tasks are blocked: <em>[Task A]</em> waiting on API spec · 3 days, Kenji &nbsp;·&nbsp; <em>[Task B]</em> pending design review · 1 day, Aoi."</p><span class="mcp-tag" style="background:var(--green-dim);color:var(--green)">No tabs opened · No manual checking</span></div></div>
     <div class="wf-progress">
       <div class="wf-dot" id="wd1"></div><div class="wf-dot" id="wd2"></div><div class="wf-dot" id="wd3"></div><div class="wf-dot" id="wd4"></div><div class="wf-dot" id="wd5"></div>
