@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ── Primary SEO ── -->
+  <title>HiPE — AIプロジェクトインテリジェンス | プロジェクトを指揮する</title>
+  <meta name="description" content="HiPEは、スタック全体のツールを横断するAIインターフェースをプロジェクトリーダーに提供します。自然な会話でSlack、GitHub、Google、Teamsなど19種類以上のツールから即座に回答を得られます。" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="HiPE" />
+  <meta name="keywords" content="AIプロジェクト管理, プロジェクトインテリジェンス, AIアシスタント, Slack連携, GitHub連携, プロジェクト可視化, チーム生産性, MCPツール" />
+  <meta name="theme-color" content="#D97706" />
+  <link rel="canonical" href="https://hipe.app/ja/" />
+
+  <!-- ── Hreflang ── -->
+  <link rel="alternate" hreflang="en" href="https://hipe.app/" />
+  <link rel="alternate" hreflang="ja" href="https://hipe.app/ja/" />
+  <link rel="alternate" hreflang="x-default" href="https://hipe.app/" />
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hipe.app/ja/" />
+  <meta property="og:site_name" content="HiPE" />
+  <meta property="og:title" content="HiPE — AIプロジェクトインテリジェンス | プロジェクトを指揮する" />
+  <meta property="og:description" content="ひとつの会話で、すべてのプロジェクトを指揮する。HiPEは19種類以上のツールを接続し、自然な会話を通じてプロジェクトリーダーに完全な可視性とコントロールを提供します。" />
+  <meta property="og:image" content="https://hipe.app/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="HiPE — AIプロジェクトインテリジェンス ダッシュボード" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@hipeapp" />
+  <meta name="twitter:title" content="HiPE — AIプロジェクトインテリジェンス" />
+  <meta name="twitter:description" content="ひとつの会話で、すべてのプロジェクトを指揮する。Slack、GitHub、Google、Teamsなど19種類以上のツールと連携。" />
+  <meta name="twitter:image" content="https://hipe.app/og-image.png" />
+  <meta name="twitter:image:alt" content="HiPE AIプロジェクトインテリジェンス" />
+
+  <!-- ── Favicon ── -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23D97706'/><text x='16' y='23' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='800' font-size='20' fill='white'>H</text></svg>" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23D97706'/><text x='16' y='23' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='800' font-size='20' fill='white'>H</text></svg>" />
+
+  <!-- ── Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Noto+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://cdn.simpleicons.org" />
+
+  <!-- ── JSON-LD Structured Data ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://hipe.app/#organization",
+        "name": "HiPE",
+        "url": "https://hipe.app",
+        "logo": { "@type": "ImageObject", "url": "https://hipe.app/og-image.png" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hipe.app/ja/#website",
+        "url": "https://hipe.app/ja/",
+        "name": "HiPE",
+        "inLanguage": "ja",
+        "publisher": { "@id": "https://hipe.app/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://hipe.app/#software",
+        "name": "HiPE",
+        "url": "https://hipe.app",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "19種類以上のツールを接続し、自然な会話を通じてプロジェクトリーダーに完全な可視性を提供するAI駆動のプロジェクトインテリジェンスプラットフォーム。",
+        "offers": [
+          { "@type": "Offer", "name": "スターター", "price": "0", "priceCurrency": "JPY" },
+          { "@type": "Offer", "name": "プロ", "price": "7800", "priceCurrency": "JPY" }
+        ],
+        "publisher": { "@id": "https://hipe.app/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "各プランにはどの連携ツールが含まれますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "スタータープランは5種類まで連携ツールを選択できます。ProおよびエンタープライズプランではSlack、GitHub、Google Workspace、Microsoft 365、ClickUp、monday.com、Asana、Confluence、Backlog、Miro、draw.ioなど19種類以上すべての連携ツールが利用可能です。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "プランの変更やキャンセルはいつでも可能ですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "はい。ワークスペースの設定からいつでもプランのアップグレード、ダウングレード、キャンセルが可能です。変更は次の請求サイクル開始時に適用されます。違約金やロックインはありません。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Proプランの無料トライアルはありますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "はい。すべての新しいワークスペースには14日間のProトライアルが含まれており、クレジットカードは不要です。トライアル終了後はProプランを継続するか、自動的にスタータープラン（無料）に移行します。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "ワークスペースの課金はどのような仕組みですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "料金はワークスペースごとに月単位で発生します。1つのアカウントで複数のワークスペースを作成でき（クライアント・チーム・プロジェクトごとに分けるなど）、各ワークスペースはプラン料金に基づいて個別に課金されます。"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:         #D97706;
+      --gold-hover:   #B45309;
+      --gold-light:   #F59E0B;
+      --gold-dim:     rgba(217,119,6,0.12);
+
+      --bg:           #FAF8F5;
+      --surface:      #FFFFFF;
+      --elevated:     #F5F2ED;
+      --border:       #E2DDD6;
+      --border-strong:#CEC7BD;
+
+      --text-primary:   #1C1714;
+      --text-secondary: #6B5E4E;
+      --text-tertiary:  #9B8E82;
+
+      --purple:     #7C3AED;
+      --purple-dim: rgba(124,58,237,0.1);
+      --green:      #059669;
+      --green-dim:  rgba(5,150,105,0.1);
+
+      --font-display: 'Bricolage Grotesque', 'Noto Sans JP', sans-serif;
+      --font-body:    'Noto Sans JP', sans-serif;
+      --font-mono:    'JetBrains Mono', 'Noto Sans JP', monospace;
+
+      --radius:    12px;
+      --radius-sm:  8px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+
+      --shadow-sm: 0 1px 3px rgba(28,23,20,0.06), 0 1px 2px rgba(28,23,20,0.04);
+      --shadow-md: 0 4px 16px rgba(28,23,20,0.08), 0 2px 4px rgba(28,23,20,0.04);
+      --shadow-lg: 0 20px 48px rgba(28,23,20,0.12), 0 4px 12px rgba(28,23,20,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Skip nav ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      z-index: 9999;
+      background: var(--gold);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: top 0.1s;
+    }
+    .skip-link:focus { top: 16px; }
+
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Chip ── */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-dim);
+      color: var(--gold-hover);
+      border: 1px solid rgba(217,119,6,0.25);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-family: var(--font-body);
+    }
+    .chip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+      white-space: nowrap;
+    }
+    .btn-primary { background: var(--gold); color: #fff; box-shadow: 0 2px 8px rgba(217,119,6,0.35); }
+    .btn-primary:hover { background: var(--gold-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(217,119,6,0.45); }
+    .btn-secondary { background: var(--surface); color: var(--text-primary); border: 1.5px solid var(--border-strong); }
+    .btn-secondary:hover { background: var(--elevated); border-color: var(--text-tertiary); }
+    .btn-lg { padding: 15px 32px; font-size: 16px; border-radius: var(--radius); }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 70ms; }
+    .delay-2 { transition-delay: 140ms; }
+    .delay-3 { transition-delay: 210ms; }
+    .delay-4 { transition-delay: 280ms; }
+    .delay-5 { transition-delay: 350ms; }
+    .delay-6 { transition-delay: 420ms; }
+
+    .section    { padding: 96px 0; }
+    .section-sm { padding: 72px 0; }
+
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-top: 14px;
+      margin-bottom: 16px;
+    }
+    .section-header p { font-size: 17px; color: var(--text-secondary); max-width: 560px; margin: 0 auto; line-height: 1.8; }
+
+    /* ── Lang switcher ── */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 3px;
+      font-size: 12px;
+    }
+    .lang-btn {
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-btn.active { background: var(--surface); color: var(--text-primary); box-shadow: var(--shadow-sm); }
+
+    /* ────────────────────────────────────
+       NAV
+    ──────────────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,248,245,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark {
+      width: 36px; height: 36px;
+      background: var(--gold);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: 20px; color: #fff;
+      box-shadow: 0 2px 8px rgba(217,119,6,0.3);
+      flex-shrink: 0;
+    }
+    .logo-name { font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* ────────────────────────────────────
+       HERO
+    ──────────────────────────────────── */
+    .hero { padding: 112px 0 80px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(217,119,6,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-chip { margin-bottom: 28px; }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      max-width: 820px;
+      margin: 0 auto 24px;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub { font-size: clamp(16px, 2vw, 19px); color: var(--text-secondary); max-width: 580px; margin: 0 auto 40px; line-height: 1.85; }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .hero-note { margin-top: 16px; font-size: 13px; color: var(--text-tertiary); }
+
+    /* ── Chat window ── */
+    .hero-visual { margin: 72px auto 0; max-width: 860px; }
+    .chat-window { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); overflow: hidden; }
+    .chat-titlebar { display: flex; align-items: center; gap: 8px; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--elevated); }
+    .titlebar-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .chat-body { padding: 28px 32px; display: flex; flex-direction: column; gap: 20px; min-height: 300px; }
+    .chat-msg { display: flex; gap: 12px; align-items: flex-start; max-width: 85%; }
+    .chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+    .chat-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+    .chat-avatar.ai { background: var(--gold-dim); color: var(--gold-hover); border: 1.5px solid rgba(217,119,6,0.2); }
+    .chat-avatar.u  { background: var(--elevated); color: var(--text-secondary); border: 1.5px solid var(--border); }
+    .chat-bubble { background: var(--elevated); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: 13.5px; color: var(--text-primary); line-height: 1.75; text-align: left; }
+    .chat-bubble.user-bubble { background: var(--gold); color: #fff; border-color: var(--gold-hover); }
+    .tool-call { display: block; width: fit-content; background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(124,58,237,0.18); border-radius: 6px; padding: 3px 10px; font-size: 11.5px; font-family: var(--font-mono); font-weight: 500; margin-top: 8px; }
+    .typing-dots { display: flex; gap: 4px; padding: 4px 0; }
+    .typing-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--text-tertiary); animation: typingBounce 1.2s ease-in-out infinite; }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+    .chat-composer { display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-top: 1px solid var(--border); background: var(--elevated); }
+    .composer-input { flex: 1; font-family: var(--font-body); font-size: 13.5px; color: var(--text-tertiary); background: transparent; border: none; outline: none; }
+    .composer-send { width: 34px; height: 34px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* ────────────────────────────────────
+       LOGOS STRIP
+    ──────────────────────────────────── */
+    .logos-strip { padding: 48px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); }
+    .logos-label { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--text-tertiary); font-family: var(--font-body); margin-bottom: 28px; }
+    .logos-scroll { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 6px; }
+    .logo-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; background: var(--elevated); border: 1px solid var(--border); border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--text-secondary); white-space: nowrap; transition: border-color 0.15s, color 0.15s; }
+    .logo-pill:hover { border-color: var(--gold-light); color: var(--text-primary); }
+    .logo-icon { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .logo-icon img { width: 18px; height: 18px; object-fit: contain; }
+    .logo-icon-badge { width: 18px; height: 18px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; flex-shrink: 0; letter-spacing: -0.5px; color: #fff; }
+
+    /* ────────────────────────────────────
+       FEATURES GRID
+    ──────────────────────────────────── */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 32px; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .feature-card:hover { border-color: var(--gold-light); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .feature-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+    .feature-icon.amber  { background: var(--gold-dim); }
+    .feature-icon.purple { background: var(--purple-dim); }
+    .feature-icon.green  { background: var(--green-dim); }
+    .feature-icon.blue   { background: rgba(59,130,246,0.1); }
+    .feature-icon.red    { background: rgba(220,38,38,0.08); }
+    .feature-icon.teal   { background: rgba(20,184,166,0.1); }
+    .feature-card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+    .feature-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+    /* ────────────────────────────────────
+       HOW IT WORKS
+    ──────────────────────────────────── */
+    .steps-bg { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; } }
+    .step { padding: 48px 40px; border-right: 1px solid var(--border); }
+    .step:last-child { border-right: none; }
+    @media (max-width: 768px) { .step { border-right: none; border-bottom: 1px solid var(--border); } .step:last-child { border-bottom: none; } }
+    .step-number { font-family: 'Bricolage Grotesque', sans-serif; font-size: 64px; font-weight: 800; color: var(--border); line-height: 1; margin-bottom: 24px; letter-spacing: -4px; }
+    .step h3 { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+    .step p { font-size: 14.5px; color: var(--text-secondary); line-height: 1.8; }
+
+    /* ────────────────────────────────────
+       INTEGRATIONS
+    ──────────────────────────────────── */
+    .integrations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .integration-card { display: flex; align-items: center; gap: 14px; background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px 20px; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
+    .integration-card:hover { border-color: var(--gold-light); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+    .integration-icon { width: 44px; height: 44px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid var(--border); background: var(--surface); padding: 9px; }
+    .integration-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .integration-icon-badge { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; letter-spacing: -0.5px; color: #fff; }
+    .integration-info { min-width: 0; }
+    .integration-info strong { display: block; font-size: 13.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .integration-info span { display: block; font-size: 11.5px; color: var(--text-tertiary); margin-top: 1px; }
+
+    /* ────────────────────────────────────
+       STATS
+    ──────────────────────────────────── */
+    .stats-band { background: var(--text-primary); padding: 64px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    .stat-value { font-family: 'Bricolage Grotesque', sans-serif; font-size: 48px; font-weight: 800; color: var(--gold); letter-spacing: -2px; line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 13px; color: rgba(250,248,245,0.6); font-weight: 500; line-height: 1.5; }
+
+    /* ────────────────────────────────────
+       PERSONAS
+    ──────────────────────────────────── */
+    .personas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .personas-grid { grid-template-columns: 1fr; } }
+    .persona-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 36px 32px; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .persona-card:hover { border-color: var(--gold-light); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .persona-emoji { font-size: 36px; margin-bottom: 20px; display: block; }
+    .persona-card h3 { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+    .persona-role { font-size: 12px; color: var(--gold-hover); font-weight: 700; font-family: var(--font-body); letter-spacing: 0.04em; margin-bottom: 16px; }
+    .persona-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px; }
+    .persona-needs { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .persona-needs li { display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; }
+    .need-check { width: 18px; height: 18px; border-radius: 50%; background: var(--green-dim); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; margin-top: 2px; }
+
+    /* ────────────────────────────────────
+       PRICING
+    ──────────────────────────────────── */
+    .pricing-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .pricing-toggle { display: inline-flex; align-items: center; gap: 0; background: var(--elevated); border: 1px solid var(--border); border-radius: 100px; padding: 4px; margin-top: 20px; }
+    .toggle-btn { padding: 7px 20px; border-radius: 100px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; background: transparent; color: var(--text-secondary); font-family: var(--font-body); transition: background 0.2s, color 0.2s; }
+    .toggle-btn.active { background: var(--surface); color: var(--text-primary); box-shadow: var(--shadow-sm); }
+    .save-badge { display: inline-flex; align-items: center; background: var(--green-dim); color: var(--green); border: 1px solid rgba(5,150,105,0.2); border-radius: 100px; padding: 2px 10px; font-size: 11px; font-weight: 700; font-family: var(--font-body); margin-left: 8px; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+    @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; } }
+
+    .pricing-card { background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 36px 32px; position: relative; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .pricing-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .pricing-card.featured { background: var(--text-primary); border-color: var(--text-primary); box-shadow: var(--shadow-lg); transform: scale(1.03); }
+    .pricing-card.featured:hover { transform: scale(1.03) translateY(-3px); }
+
+    .plan-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; font-family: var(--font-body); padding: 4px 14px; border-radius: 100px; white-space: nowrap; }
+
+    .plan-name { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+    .pricing-card.featured .plan-name { color: #FAF8F5; }
+
+    .plan-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 28px; min-height: 50px; }
+    .pricing-card.featured .plan-desc { color: rgba(250,248,245,0.65); }
+
+    .plan-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; }
+    .price-currency { font-size: 20px; font-weight: 700; color: var(--text-secondary); margin-bottom: 3px; }
+    .pricing-card.featured .price-currency { color: rgba(250,248,245,0.7); }
+    .price-amount { font-family: 'Bricolage Grotesque', sans-serif; font-size: 52px; font-weight: 800; color: var(--text-primary); letter-spacing: -2px; line-height: 1; }
+    .pricing-card.featured .price-amount { color: #FAF8F5; }
+    .price-free { font-family: 'Bricolage Grotesque', sans-serif; font-size: 48px; font-weight: 800; color: var(--text-primary); letter-spacing: -2px; line-height: 1; margin-bottom: 6px; }
+    .price-unit { font-size: 13px; color: var(--text-tertiary); margin-bottom: 28px; line-height: 1.6; }
+    .pricing-card.featured .price-unit { color: rgba(250,248,245,0.5); }
+
+    .price-divider { height: 1px; background: var(--border); margin: 24px 0; }
+    .pricing-card.featured .price-divider { background: rgba(250,248,245,0.12); }
+
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.55; }
+    .pricing-card.featured .plan-features li { color: rgba(250,248,245,0.8); }
+
+    .feat-check { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; margin-top: 1px; }
+    .feat-check.yes { background: var(--green-dim); color: var(--green); }
+    .feat-check.no  { background: var(--elevated); color: var(--text-tertiary); }
+    .pricing-card.featured .feat-check.yes { background: rgba(5,150,105,0.2); color: #34D399; }
+    .pricing-card.featured .feat-check.no  { background: rgba(250,248,245,0.08); color: rgba(250,248,245,0.35); }
+
+    .plan-cta { display: block; width: 100%; text-align: center; padding: 13px; border-radius: var(--radius-sm); font-size: 14.5px; font-weight: 700; font-family: var(--font-body); cursor: pointer; border: 1.5px solid var(--border-strong); background: transparent; color: var(--text-primary); text-decoration: none; transition: background 0.18s, border-color 0.18s, transform 0.18s, box-shadow 0.18s; }
+    .plan-cta:hover { background: var(--elevated); border-color: var(--text-tertiary); transform: translateY(-1px); }
+    .plan-cta.featured-cta { background: var(--gold); border-color: var(--gold); color: #fff; box-shadow: 0 2px 8px rgba(217,119,6,0.4); }
+    .plan-cta.featured-cta:hover { background: var(--gold-hover); border-color: var(--gold-hover); box-shadow: 0 4px 16px rgba(217,119,6,0.5); }
+
+    /* ── FAQ ── */
+    .pricing-faq { margin-top: 72px; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .faq-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 28px; color: var(--text-primary); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:first-of-type { border-top: 1px solid var(--border); }
+    .faq-question { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; cursor: pointer; font-size: 14.5px; font-weight: 600; color: var(--text-primary); list-style: none; user-select: none; line-height: 1.6; }
+    .faq-question::-webkit-details-marker { display: none; }
+    .faq-icon { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--border-strong); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; color: var(--text-tertiary); transition: transform 0.25s, border-color 0.2s; line-height: 1; }
+    details[open] .faq-icon { transform: rotate(45deg); border-color: var(--gold); color: var(--gold); }
+    .faq-answer { font-size: 14px; color: var(--text-secondary); line-height: 1.85; padding-bottom: 20px; }
+
+    /* ────────────────────────────────────
+       QUOTE
+    ──────────────────────────────────── */
+    .quote-section { padding: 80px 0; background: var(--gold-dim); border-top: 1px solid rgba(217,119,6,0.15); border-bottom: 1px solid rgba(217,119,6,0.15); }
+    .quote-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .quote-mark { font-family: 'Bricolage Grotesque', sans-serif; font-size: 72px; color: var(--gold); line-height: 0.5; margin-bottom: 24px; display: block; }
+    .quote-text { font-family: var(--font-display); font-size: clamp(19px, 2.8vw, 26px); font-weight: 600; color: var(--text-primary); line-height: 1.6; margin-bottom: 28px; }
+    .quote-author { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .quote-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--gold); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+    .quote-meta strong { display: block; font-size: 14px; font-weight: 600; color: var(--text-primary); text-align: left; }
+    .quote-meta span { font-size: 13px; color: var(--text-tertiary); }
+
+    /* ────────────────────────────────────
+       CTA
+    ──────────────────────────────────── */
+    .cta-section { padding: 112px 0; text-align: center; background: var(--surface); border-top: 1px solid var(--border); }
+    .cta-inner { max-width: 640px; margin: 0 auto; }
+    .cta-section h2 { font-family: var(--font-display); font-size: clamp(28px, 4.5vw, 52px); font-weight: 800; letter-spacing: -1px; line-height: 1.2; color: var(--text-primary); margin: 14px 0 20px; }
+    .cta-section p { font-size: 17px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 40px; }
+
+    /* ────────────────────────────────────
+       FOOTER
+    ──────────────────────────────────── */
+    .site-footer { border-top: 1px solid var(--border); padding: 48px 0 40px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+    .footer-left { display: flex; align-items: center; gap: 10px; }
+    .footer-copy { font-size: 13px; color: var(--text-tertiary); margin-left: 16px; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 13px; color: var(--text-tertiary); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text-secondary); }
+    .footer-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-family: var(--font-mono); color: var(--text-tertiary); background: var(--elevated); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; }
+  </style>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+
+  <!-- ── HEADER ── -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="メインナビゲーション">
+        <a href="/ja/" class="nav-logo" aria-label="HiPE ホーム">
+          <div class="logo-mark" aria-hidden="true">H</div>
+          <span class="logo-name">HiPE</span>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="#features">機能</a></li>
+          <li><a href="#how-it-works">使い方</a></li>
+          <li><a href="#integrations">連携ツール</a></li>
+          <li><a href="#pricing">料金プラン</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div class="lang-switch" aria-label="言語を選択">
+            <a href="/" class="lang-btn" lang="en" hreflang="en">EN</a>
+            <a href="/ja/" class="lang-btn active" lang="ja" hreflang="ja" aria-current="true">JA</a>
+          </div>
+          <a href="/login" class="btn btn-secondary" style="padding:9px 18px;font-size:14px">ログイン</a>
+          <a href="/register" class="btn btn-primary" style="padding:9px 18px;font-size:14px">無料で始める</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── HERO ── -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-chip reveal">
+          <span class="chip" role="text">
+            <span class="chip-dot" aria-hidden="true"></span>
+            AIプロジェクトインテリジェンス
+          </span>
+        </div>
+
+        <h1 id="hero-heading" class="reveal delay-1">
+          すべてのプロジェクトを。<br/>
+          <em>ひとつの会話で。</em>
+        </h1>
+
+        <p class="hero-sub reveal delay-2">
+          HiPEは、スタック全体のツールを横断する統一AIインターフェースをプロジェクトリーダーに提供します。意思決定を加速し、見落としをゼロにします。
+        </p>
+
+        <div class="hero-actions reveal delay-3">
+          <a href="/register" class="btn btn-primary btn-lg">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            無料で始める
+          </a>
+          <a href="#how-it-works" class="btn btn-secondary btn-lg">使い方を見る</a>
+        </div>
+        <p class="hero-note reveal delay-3">クレジットカード不要 · 2分でセットアップ · 14日間Proトライアル付き</p>
+
+        <!-- Chat UI mockup -->
+        <div class="hero-visual reveal delay-4" aria-hidden="true">
+          <div class="chat-window" role="img" aria-label="HiPEのチャット画面 — スプリント状況の問い合わせ例">
+            <div class="chat-titlebar">
+              <div class="titlebar-dot" style="background:#FF5F57"></div>
+              <div class="titlebar-dot" style="background:#FFBD2E"></div>
+              <div class="titlebar-dot" style="background:#28CA41"></div>
+              <span style="margin-left:12px;font-size:13px;color:var(--text-tertiary);font-family:var(--font-mono)">HiPE — Q2スプリント ワークスペース</span>
+            </div>
+            <div class="chat-body">
+              <div class="chat-msg user">
+                <div class="chat-avatar u">田</div>
+                <div class="chat-bubble user-bubble">全チームの現在のスプリント状況を教えてください。重要なブロッカーはありますか？</div>
+              </div>
+              <div class="chat-msg">
+                <div class="chat-avatar ai">H</div>
+                <div>
+                  <div class="chat-bubble">
+                    Backlog、ClickUp、GitHubからスプリントデータを取得中…
+                    <span class="tool-call">⚡ backlog__get_sprint_issues · github__list_pull_requests · clickup__get_tasks</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-msg">
+                <div class="chat-avatar ai">H</div>
+                <div class="chat-bubble">
+                  Q2スプリントのサマリーです：<br/><br/>
+                  <strong>✅ バックエンドAPI</strong> — 18タスク中14完了。順調です。<br/>
+                  <strong>⚠️ フロントエンド</strong> — 18タスク中9完了。PR #42が火曜日からデザインレビュー待ちでブロック中。<br/>
+                  <strong>🔴 モバイル</strong> — 18タスク中5完了。昨日作成されたAuth重大バグ（BLG-291）をMukeshがフラグ立て。<br/><br/>
+                  SlackでモバイルチームへNotifyするか、BLG-291を再割り当てしますか？
+                </div>
+              </div>
+              <div class="chat-msg" style="opacity:0.5">
+                <div class="chat-avatar ai">H</div>
+                <div class="chat-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>
+              </div>
+            </div>
+            <div class="chat-composer">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="var(--text-tertiary)" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="m21 21-4.35-4.35"/></svg>
+              <span class="composer-input">プロジェクトについて何でも質問してください…</span>
+              <div class="composer-send" aria-hidden="true">
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LOGOS STRIP ── -->
+    <section class="logos-strip" aria-label="対応している連携ツール">
+      <div class="container">
+        <p class="logos-label">すでに使っているツールと接続できます</p>
+        <ul class="logos-scroll" role="list" style="padding:0;list-style:none">
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/slack" width="18" height="18" alt="" loading="lazy" /></span>Slack</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/github/1C1714" width="18" height="18" alt="" loading="lazy" /></span>GitHub</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/gmail" width="18" height="18" alt="" loading="lazy" /></span>Gmail</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/googlecalendar" width="18" height="18" alt="" loading="lazy" /></span>Google カレンダー</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/microsoftteams" width="18" height="18" alt="" loading="lazy" /></span>Microsoft Teams</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/clickup" width="18" height="18" alt="" loading="lazy" /></span>ClickUp</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/monday" width="18" height="18" alt="" loading="lazy" /></span>monday.com</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/asana" width="18" height="18" alt="" loading="lazy" /></span>Asana</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/confluence" width="18" height="18" alt="" loading="lazy" /></span>Confluence</div></li>
+          <li><div class="logo-pill"><span class="logo-icon logo-icon-badge" style="background:#1E4388" aria-hidden="true">BL</span>Backlog</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/googlesheets" width="18" height="18" alt="" loading="lazy" /></span>Google スプレッドシート</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/microsoftexcel" width="18" height="18" alt="" loading="lazy" /></span>Excel</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/miro" width="18" height="18" alt="" loading="lazy" /></span>Miro</div></li>
+          <li><div class="logo-pill"><span class="logo-icon"><img src="https://cdn.simpleicons.org/diagramsdotnet" width="18" height="18" alt="" loading="lazy" /></span>draw.io</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section class="section" id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="chip">HiPEの機能</span>
+          <h2 id="features-heading">プロジェクトリーダーに必要な<br/>すべてが、ひとつの場所に</h2>
+          <p>10種類ものタブを行き来するのはもう終わりです。HiPEがすべてを接続し、自然な言葉で答えます。</p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card reveal delay-1">
+            <div class="feature-icon amber" aria-hidden="true">💬</div>
+            <h3>会話型プロジェクト管理</h3>
+            <p>質問する、タスクを作成する、スプリント状況を確認する、クロスツールのサマリーを取得する――すべてひとつのチャットスレッドから。</p>
+          </article>
+          <article class="feature-card reveal delay-2">
+            <div class="feature-icon purple" aria-hidden="true">⚡</div>
+            <h3>19種類以上のリアルタイム連携</h3>
+            <p>Backlog、GitHub、ClickUp、monday.com、Asana、Slack、Google、Microsoft 365などからリアルタイムにデータを取得します。</p>
+          </article>
+          <article class="feature-card reveal delay-3">
+            <div class="feature-icon green" aria-hidden="true">📊</div>
+            <h3>ツールを横断した可視化</h3>
+            <p>すべてのPMツールからブロッカー、進捗、担当者の割り当てを一つのAIレポートで確認できます。</p>
+          </article>
+          <article class="feature-card reveal delay-4">
+            <div class="feature-icon blue" aria-hidden="true">🗓️</div>
+            <h3>スマートスケジューリング</h3>
+            <p>チャットを離れることなく、空き時間の確認、イベントの作成、GoogleカレンダーとOutlookの同期が可能です。</p>
+          </article>
+          <article class="feature-card reveal delay-5">
+            <div class="feature-icon red" aria-hidden="true">🔔</div>
+            <h3>チーム通知</h3>
+            <p>Slackへのメッセージ送信、チャンネルへの更新投稿、ステークホルダーへの通知――すべて自然な言葉で指示するだけ。</p>
+          </article>
+          <article class="feature-card reveal delay-6">
+            <div class="feature-icon teal" aria-hidden="true">🏢</div>
+            <h3>マルチワークスペース</h3>
+            <p>チーム、クライアント、プロジェクトごとに独立したワークスペースを作成。それぞれに異なる連携ツールと会話履歴を持てます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section class="steps-bg section-sm" id="how-it-works" aria-labelledby="hiw-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="chip">使い方</span>
+          <h2 id="hiw-heading">数分で使い始められます</h2>
+          <p>複雑な設定は不要です。ツールを接続して、質問するだけ。</p>
+        </div>
+      </div>
+      <div class="container" style="padding:0">
+        <div style="border:1.5px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;background:var(--surface)">
+          <ol class="steps-grid" style="list-style:none">
+            <li class="step reveal">
+              <div class="step-number" aria-hidden="true">01</div>
+              <h3>ツールを接続する</h3>
+              <p>既存のPMツール、カレンダー、コミュニケーションアプリを数クリックで接続。ワークスペースごとに異なるアカウントを使用できます。</p>
+            </li>
+            <li class="step reveal delay-2">
+              <div class="step-number" aria-hidden="true">02</div>
+              <h3>自然な言葉で質問する</h3>
+              <p>「今スプリントで何がブロックされていますか？」「レビュー会議をスケジュールして」「Slackでチームに通知して」――日本語で自由に質問できます。</p>
+            </li>
+            <li class="step reveal delay-4">
+              <div class="step-number" aria-hidden="true">03</div>
+              <h3>即座に回答を得る</h3>
+              <p>HiPEが適切なツールへリクエストをルーティングし、ライブデータを取得して、明確で実行可能な回答を数秒でストリーミングします。</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STATS ── -->
+    <div class="stats-band" aria-label="主要な数字">
+      <div class="container">
+        <dl class="stats-grid">
+          <div class="reveal">
+            <dt class="stat-label">対応連携ツール数</dt>
+            <dd class="stat-value">19+</dd>
+          </div>
+          <div class="reveal delay-1">
+            <dt class="stat-label">平均応答時間</dt>
+            <dd class="stat-value">&lt;2秒</dd>
+          </div>
+          <div class="reveal delay-2">
+            <dt class="stat-label">全ツールをつなぐ<br/>インターフェース</dt>
+            <dd class="stat-value">1</dd>
+          </div>
+          <div class="reveal delay-3">
+            <dt class="stat-label">1アカウントの<br/>ワークスペース数</dt>
+            <dd class="stat-value">∞</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- ── INTEGRATIONS ── -->
+    <section class="section" id="integrations" aria-labelledby="integrations-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="chip">連携ツール</span>
+          <h2 id="integrations-heading">スタックのすべてのツールが、<br/>ついてにひとつになる</h2>
+          <p>HiPEはMCP（Model Context Protocol）を使ってツールと直接対話します。不安定なWebhookや古いエクスポートは不要です。</p>
+        </div>
+
+        <ul class="integrations-grid" role="list" style="padding:0;list-style:none">
+          <li class="integration-card reveal delay-1">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/github/1C1714" width="26" height="26" alt="GitHub" loading="lazy" /></div>
+            <div class="integration-info"><strong>GitHub</strong><span>リポジトリ、PR、Issue</span></div>
+          </li>
+          <li class="integration-card reveal delay-1">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/slack" width="26" height="26" alt="Slack" loading="lazy" /></div>
+            <div class="integration-info"><strong>Slack</strong><span>メッセージ、チャンネル</span></div>
+          </li>
+          <li class="integration-card reveal delay-2">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/googlecalendar" width="26" height="26" alt="Google Calendar" loading="lazy" /></div>
+            <div class="integration-info"><strong>Google カレンダー</strong><span>イベント、空き時間</span></div>
+          </li>
+          <li class="integration-card reveal delay-2">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/gmail" width="26" height="26" alt="Gmail" loading="lazy" /></div>
+            <div class="integration-info"><strong>Gmail</strong><span>メール、受信トレイ</span></div>
+          </li>
+          <li class="integration-card reveal delay-2">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/microsoftteams" width="26" height="26" alt="Microsoft Teams" loading="lazy" /></div>
+            <div class="integration-info"><strong>Microsoft Teams</strong><span>チャット、会議</span></div>
+          </li>
+          <li class="integration-card reveal delay-3">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/googlesheets" width="26" height="26" alt="Google Sheets" loading="lazy" /></div>
+            <div class="integration-info"><strong>Google スプレッドシート</strong><span>スプレッドシート、データ</span></div>
+          </li>
+          <li class="integration-card reveal delay-3">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/googledocs" width="26" height="26" alt="Google Docs" loading="lazy" /></div>
+            <div class="integration-info"><strong>Google ドキュメント</strong><span>ドキュメント、メモ</span></div>
+          </li>
+          <li class="integration-card reveal delay-3">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/googledrive" width="26" height="26" alt="Google Drive" loading="lazy" /></div>
+            <div class="integration-info"><strong>Google ドライブ</strong><span>ファイル、フォルダ</span></div>
+          </li>
+          <li class="integration-card reveal delay-3">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/googlemeet" width="26" height="26" alt="Google Meet" loading="lazy" /></div>
+            <div class="integration-info"><strong>Google Meet</strong><span>ビデオ会議</span></div>
+          </li>
+          <li class="integration-card reveal delay-4">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/googleslides" width="26" height="26" alt="Google Slides" loading="lazy" /></div>
+            <div class="integration-info"><strong>Google スライド</strong><span>プレゼンテーション</span></div>
+          </li>
+          <li class="integration-card reveal delay-4">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/microsoftoutlook" width="26" height="26" alt="Microsoft Outlook" loading="lazy" /></div>
+            <div class="integration-info"><strong>Outlook</strong><span>メール + カレンダー</span></div>
+          </li>
+          <li class="integration-card reveal delay-4">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/microsoftexcel" width="26" height="26" alt="Microsoft Excel" loading="lazy" /></div>
+            <div class="integration-info"><strong>Excel</strong><span>スプレッドシート</span></div>
+          </li>
+          <li class="integration-card reveal delay-4">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/clickup" width="26" height="26" alt="ClickUp" loading="lazy" /></div>
+            <div class="integration-info"><strong>ClickUp</strong><span>タスク、プロジェクト</span></div>
+          </li>
+          <li class="integration-card reveal delay-5">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/monday" width="26" height="26" alt="monday.com" loading="lazy" /></div>
+            <div class="integration-info"><strong>monday.com</strong><span>ボード、アイテム</span></div>
+          </li>
+          <li class="integration-card reveal delay-5">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/asana" width="26" height="26" alt="Asana" loading="lazy" /></div>
+            <div class="integration-info"><strong>Asana</strong><span>タスク、ポートフォリオ</span></div>
+          </li>
+          <li class="integration-card reveal delay-5">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/confluence" width="26" height="26" alt="Confluence" loading="lazy" /></div>
+            <div class="integration-info"><strong>Confluence</strong><span>ドキュメント、ナレッジ</span></div>
+          </li>
+          <li class="integration-card reveal delay-5">
+            <div class="integration-icon"><div class="integration-icon-badge" style="background:#1E4388" aria-label="Backlog">BL</div></div>
+            <div class="integration-info"><strong>Backlog</strong><span>課題、Wiki</span></div>
+          </li>
+          <li class="integration-card reveal delay-6">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/diagramsdotnet" width="26" height="26" alt="draw.io" loading="lazy" /></div>
+            <div class="integration-info"><strong>draw.io</strong><span>図表、フロー</span></div>
+          </li>
+          <li class="integration-card reveal delay-6">
+            <div class="integration-icon"><img src="https://cdn.simpleicons.org/miro" width="26" height="26" alt="Miro" loading="lazy" /></div>
+            <div class="integration-info"><strong>Miro</strong><span>ボード、ワークショップ</span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── QUOTE ── -->
+    <section class="quote-section" aria-label="ユーザーの声">
+      <div class="container">
+        <div class="quote-inner reveal">
+          <span class="quote-mark" aria-hidden="true">"</span>
+          <blockquote>
+            <p class="quote-text">HiPEを使う前は、チームの状況を把握するだけで毎朝20分かけて8つものタブを開いていました。今は質問するだけです。</p>
+            <footer class="quote-author">
+              <div class="quote-avatar" aria-hidden="true">田</div>
+              <div class="quote-meta">
+                <strong>田中さき</strong>
+                <span>エンジニアリングプログラムマネージャー</span>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PERSONAS ── -->
+    <section class="section" id="personas" aria-labelledby="personas-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="chip">チームに合わせて</span>
+          <h2 id="personas-heading">組織のすべてのリーダーに<br/>対応しています</h2>
+          <p>一つのチームを率いる方から全体のポートフォリオを管理する方まで、HiPEはあなたのスコープとワークフローに合わせて対応します。</p>
+        </div>
+
+        <div class="personas-grid">
+          <article class="persona-card reveal delay-1">
+            <span class="persona-emoji" aria-hidden="true">🗂️</span>
+            <h3>プロジェクトマネージャー</h3>
+            <p class="persona-role">2〜5件のクロスファンクショナルプロジェクトを管理</p>
+            <p>クロスツールのステータスレポートを即座に取得し、ブロッカーを早期に検出し、会話からタスクを直接作成できます。JiraやSlack、Googleカレンダーを行き来する必要はありません。</p>
+            <ul class="persona-needs">
+              <li><span class="need-check" aria-hidden="true">✓</span>全PMツールのスプリント状況確認</li>
+              <li><span class="need-check" aria-hidden="true">✓</span>ブロッカー検出とエスカレーション</li>
+              <li><span class="need-check" aria-hidden="true">✓</span>自動タスク作成</li>
+              <li><span class="need-check" aria-hidden="true">✓</span>会議同期とスケジューリング</li>
+            </ul>
+          </article>
+
+          <article class="persona-card reveal delay-2">
+            <span class="persona-emoji" aria-hidden="true">👥</span>
+            <h3>チームリーダー</h3>
+            <p class="persona-role">アクティブなスプリントチームを率いる</p>
+            <p>PRのステータス確認、Slackへの更新投稿、ワークロードの内訳取得――フローを止めることなく、チームを前進させ続けます。</p>
+            <ul class="persona-needs">
+              <li><span class="need-check" aria-hidden="true">✓</span>PRとIssueのトラッキング</li>
+              <li><span class="need-check" aria-hidden="true">✓</span>Slackチーム通知</li>
+              <li><span class="need-check" aria-hidden="true">✓</span>担当者割り当てとワークロード確認</li>
+              <li><span class="need-check" aria-hidden="true">✓</span>スプリント計画サポート</li>
+            </ul>
+          </article>
+
+          <article class="persona-card reveal delay-3">
+            <span class="persona-emoji" aria-hidden="true">📈</span>
+            <h3>エグゼクティブ</h3>
+            <p class="persona-role">ポートフォリオレベルの可視性</p>
+            <p>ひとつの質問ですべてのアクティブプロジェクトを俯瞰します。リスクがエスカレートする前に検出し、チーム横断の戦略的な整合性を確保します。</p>
+            <ul class="persona-needs">
+              <li><span class="need-check" aria-hidden="true">✓</span>ポートフォリオ全体のステータスレポート</li>
+              <li><span class="need-check" aria-hidden="true">✓</span>リスクとボトルネック検出</li>
+              <li><span class="need-check" aria-hidden="true">✓</span>クロスチームの進捗サマリー</li>
+              <li><span class="need-check" aria-hidden="true">✓</span>戦略的整合性インサイト</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PRICING ── -->
+    <section class="pricing-section section" id="pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="chip">料金プラン</span>
+          <h2 id="pricing-heading">シンプルで透明な料金プラン</h2>
+          <p>無料から始められます。チームの成長に合わせてアップグレード。隠れた費用も、シート数による追加課金もありません。</p>
+          <div class="pricing-toggle" role="group" aria-label="請求サイクルを選択">
+            <button class="toggle-btn active" id="toggle-monthly" aria-pressed="true" onclick="setBilling('monthly')">月払い</button>
+            <button class="toggle-btn" id="toggle-annual" aria-pressed="false" onclick="setBilling('annual')">
+              年払い <span class="save-badge">20%お得</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="pricing-grid reveal">
+          <!-- Starter -->
+          <div class="pricing-card">
+            <p class="plan-name">スターター</p>
+            <p class="plan-desc">個人や小規模チームがAI駆動のプロジェクト管理を試すのに最適なプラン。</p>
+            <div class="plan-price">
+              <p class="price-free">無料</p>
+            </div>
+            <p class="price-unit">ずっと無料 · クレジットカード不要</p>
+            <div class="price-divider"></div>
+            <ul class="plan-features">
+              <li><span class="feat-check yes" aria-label="含む">✓</span>ワークスペース 1つ</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>連携ツール最大5種類</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>AIメッセージ 月200件</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>スレッド履歴 30日間</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>コミュニティサポート</li>
+              <li><span class="feat-check no" aria-label="含まない">–</span><span style="color:var(--text-tertiary)">カスタムユーザープロンプト</span></li>
+              <li><span class="feat-check no" aria-label="含まない">–</span><span style="color:var(--text-tertiary)">SSO / Cognito認証</span></li>
+            </ul>
+            <a href="/register" class="plan-cta">無料で始める</a>
+          </div>
+
+          <!-- Pro (featured) -->
+          <div class="pricing-card featured" aria-label="最も人気のプラン">
+            <div class="plan-badge" aria-label="人気No.1">人気 No.1</div>
+            <p class="plan-name">プロ</p>
+            <p class="plan-desc">すべての連携ツールを無制限で使いたいアクティブなプロジェクトチーム向け。</p>
+            <div class="plan-price">
+              <span class="price-currency" aria-hidden="true">¥</span>
+              <span class="price-amount" id="pro-price">7,800</span>
+            </div>
+            <p class="price-unit" id="pro-unit">ワークスペース / 月（月払い・税別）</p>
+            <div class="price-divider"></div>
+            <ul class="plan-features">
+              <li><span class="feat-check yes" aria-label="含む">✓</span>ワークスペース無制限</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>全19種類以上の連携ツール</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>AIメッセージ無制限</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>スレッド履歴全期間</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>優先メールサポート</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>カスタムユーザープロンプト</li>
+              <li><span class="feat-check no" aria-label="含まない">–</span><span style="color:rgba(250,248,245,0.45)">SSO / Cognito認証</span></li>
+            </ul>
+            <a href="/register?plan=pro" class="plan-cta featured-cta">14日間無料トライアルを始める</a>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="pricing-card">
+            <p class="plan-name">エンタープライズ</p>
+            <p class="plan-desc">SSO、カスタム連携、専任サポートが必要な組織向けプラン。</p>
+            <div class="plan-price">
+              <p class="price-free" style="font-size:36px;letter-spacing:-1px">カスタム</p>
+            </div>
+            <p class="price-unit">詳細はお問い合わせください</p>
+            <div class="price-divider"></div>
+            <ul class="plan-features">
+              <li><span class="feat-check yes" aria-label="含む">✓</span>プロプランのすべての機能</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>SSO（AWS Cognito / SAML）</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>セルフホスト型MCPサーバー</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>カスタム連携</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>99.9%稼働率SLA</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>専任カスタマーサクセス担当</li>
+              <li><span class="feat-check yes" aria-label="含む">✓</span>オンプレミス展開オプション</li>
+            </ul>
+            <a href="mailto:sales@hipe.app" class="plan-cta">営業に問い合わせる</a>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="pricing-faq reveal">
+          <h3 class="faq-title">よくある質問</h3>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              各プランにはどの連携ツールが含まれますか？
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <p class="faq-answer">スタータープランは5種類まで連携ツールを選択できます。ProおよびエンタープライズプランではSlack、GitHub、Google Workspace、Microsoft 365、ClickUp、monday.com、Asana、Confluence、Backlog、Miro、draw.ioなど19種類以上すべての連携ツールが利用可能です。</p>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              プランの変更やキャンセルはいつでも可能ですか？
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <p class="faq-answer">はい。ワークスペースの設定からいつでもプランのアップグレード、ダウングレード、キャンセルが可能です。変更は次の請求サイクル開始時に適用されます。違約金やロックインはありません。</p>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              Proプランの無料トライアルはありますか？
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <p class="faq-answer">はい。すべての新しいワークスペースには14日間のProトライアルが含まれており、クレジットカードは不要です。トライアル終了後はProプランを継続するか、自動的にスタータープラン（無料）に移行します。</p>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              ワークスペースの課金はどのような仕組みですか？
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <p class="faq-answer">料金はワークスペースごとに月単位で発生します。1つのアカウントで複数のワークスペースを作成でき（クライアント・チーム・プロジェクトごとに分けるなど）、各ワークスペースはプラン料金に基づいて個別に課金されます。</p>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              データやOAuthトークンはどのように保存されますか？
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <p class="faq-answer">連携ツールのOAuthトークンはすべてAES-256暗号化（PostgreSQLの<code>pgp_sym_encrypt</code>）によって保存されます。会話データはワークスペースごとに行レベルで分離されたSupabase（PostgreSQL）に保存されます。エンタープライズプランでは、完全なデータ主権管理のためのオンプレミス展開をサポートしています。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-inner reveal">
+          <span class="chip">始める</span>
+          <h2 id="cta-heading">よりスマートなリーダーシップを<br/>始めませんか？</h2>
+          <p>2分でHiPEワークスペースをセットアップできます。ツールを接続して、会話でプロジェクトを指揮してください。</p>
+          <div class="hero-actions">
+            <a href="/register" class="btn btn-primary btn-lg">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              無料で始める
+            </a>
+            <a href="mailto:sales@hipe.app" class="btn btn-secondary btn-lg">デモをリクエスト</a>
+          </div>
+          <p style="margin-top:18px;font-size:13px;color:var(--text-tertiary)">エンタープライズSSO対応 · トークン暗号化保存 · 14日間Proトライアル付き</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a href="/ja/" class="nav-logo" aria-label="HiPE ホーム" style="gap:8px">
+            <div class="logo-mark" style="width:28px;height:28px;font-size:15px;border-radius:7px" aria-hidden="true">H</div>
+            <span class="logo-name" style="font-size:17px">HiPE</span>
+          </a>
+          <span class="footer-copy">© 2025 HiPE. All rights reserved.</span>
+        </div>
+
+        <nav aria-label="フッターナビゲーション">
+          <ul class="footer-links" role="list">
+            <li><a href="/privacy">プライバシーポリシー</a></li>
+            <li><a href="/terms">利用規約</a></li>
+            <li><a href="/status">ステータス</a></li>
+            <li><a href="mailto:hello@hipe.app">お問い合わせ</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-badge" aria-label="バージョン 0.1.0 ベータ、エンタープライズ">
+          <span style="color:var(--gold)" aria-hidden="true">●</span>
+          v0.1.0-beta · Enterprise
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    // ── Pricing toggle ──
+    const prices = {
+      monthly: { amount: '7,800', unit: 'ワークスペース / 月（月払い・税別）' },
+      annual:  { amount: '6,200', unit: 'ワークスペース / 月（年払い・税別）' }
+    };
+    function setBilling(mode) {
+      const p = prices[mode];
+      document.getElementById('pro-price').textContent = p.amount;
+      document.getElementById('pro-unit').textContent = p.unit;
+      document.getElementById('toggle-monthly').classList.toggle('active', mode === 'monthly');
+      document.getElementById('toggle-annual').classList.toggle('active', mode === 'annual');
+      document.getElementById('toggle-monthly').setAttribute('aria-pressed', mode === 'monthly');
+      document.getElementById('toggle-annual').setAttribute('aria-pressed', mode === 'annual');
+    }
+  </script>
+</body>
+</html>
